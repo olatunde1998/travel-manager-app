@@ -1,15 +1,16 @@
-# Online Learning Application
+# Travel Manager Web Application
 
 Hello, 👋 \
-Online Learning Application allows users to search for course of their choice and learn it within their vicinity. Online Learning Application sort the issues of going to classes and stress for all the users.
+Travel Manager Web Application allows users to search for course of their choice and learn it within their vicinity. Travel Manager Web Application sort the issues of going to classes and stress for all the users.
 ```
 Here's some notes about my submission:
 
-1. A link to the project repository  https://github.com/olatunde1998/online-learning-app
+1. A link to the project repository  https://github.com/olatunde1998/travel-manager-app
 
-2. A publicly live hosted URL of the challenge https://online-learning-application.vercel.app/
+2. A publicly live hosted URL of the challenge https://travel-manager-app.vercel.app/
 
-Thank you very much AltSchool Africa.
+Thank you very much.
+
 Best regards
 Rasheed Olatunde
 
@@ -28,17 +29,17 @@ Rasheed Olatunde
 
 
 # Prototype
-![Minion](public/images/card-images/lms.png)
+![Minion](public/images/app-prototype.png)
  
 # How to Contribute
 
 1. Clone the repository 
-$ git clone [https://github.com/olatunde1998/online-learning-app](https://github.com/olatunde1998/online-learning-app)
+$ git clone [https://github.com/olatunde1998/travel-manager-app](https://github.com/olatunde1998/travel-manager-app)
 
 2. Change directory into the cloned folder and run the setup script
 $ cd online-learning-app
 
-3. Open your terminal and type this command `yarn add ` or `npm install` to add the react dependency to the app in the development mode.
+3. Open your terminal and type this command `yarn install ` or `npm install` to add the react dependency to the app in the development mode.
 
 4. Then after the installation of the  dependency type this command  `yarn dev` to run the app in your local environment 
 
@@ -50,7 +51,7 @@ Vercel was used to deploy the app.
  + [Vercel](https://vercel.com/dashboard)
 
 # License
-The MIT License - Copyright (c) 2023 - Present, geodevcodes/  Storage Service.
+The MIT License - Copyright (c) 2023 - Present, geodevcode/  Storage Service.
 
 # Author
 Rasheed Olatunde (Frontend Developer)
