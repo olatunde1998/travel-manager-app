@@ -3,9 +3,9 @@ interface ButtonProps {
     className?: string;
     handleBtnClick?: () => void;
     btnIcon?: any;
-  }
+}
   
-  export const Button = ({
+export const Button = ({
     btnText,
     className,
     handleBtnClick,
@@ -24,9 +24,9 @@ interface ButtonProps {
         </div>
       </>
     );
-  };
+};
   
-  export const IconButton = ({
+export const IconButton = ({
     btnText,
     className,
     handleBtnClick,
