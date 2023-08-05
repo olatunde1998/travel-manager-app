@@ -90,7 +90,7 @@ export default function Home() {
             </div>
             <div onClick={handleAddNewClient}>
 
-            <Button btnText="Add new Client" className="bg-[#DDAA33]" />
+            <Button btnText="Add new Client" className="bg-[#DDAA33] justify-center flex text-white" />
             </div>
           </div>
           <TableMain

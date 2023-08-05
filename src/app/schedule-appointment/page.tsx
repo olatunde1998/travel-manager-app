@@ -47,7 +47,7 @@ export default function Home() {
               <div className="flex justify-center mt-6 pr-0 lg:justify-end  gap-6 md:my-14">
                 <Button
                   btnText="Save"
-                  className="bg-[#DDAA33] rounded-md cursor-pointer "
+                  className="bg-[#DDAA33] rounded-md cursor-pointer justify-center flex text-white "
                 />
               </div>
             </form>

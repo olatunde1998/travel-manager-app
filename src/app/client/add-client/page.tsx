@@ -38,11 +38,11 @@ export default function Home() {
                 <div className="space-y-2 flex flex-col justify-center items-center">
                   <Button
                     btnText="Upload"
-                    className="bg-[#DDAA33] rounded-xl"
+                    className="bg-[#DDAA33] rounded-xl justify-center flex text-white cursor-pointer"
                   />
                   <Button
                     btnText="Use Webcam"
-                    className=" rounded-xl border-[1.6px] border-red-700 text-red-700"
+                    className="justify-center flex rounded-xl border-[1.6px] border-red-700 text-red-700"
                   />
                 </div>
               </div>
@@ -87,13 +87,13 @@ export default function Home() {
             </div>
             <div className="flex justify-between pr-0 lg:justify-end  gap-6">
               <Button
-                onClick={handleCancelBtn}
+                handleBtnClick={handleCancelBtn}
                 btnText="Cancel"
-                className="cursor-pointer rounded-md border-[1.6px] border-red-700 text-red-700"
+                className="cursor-pointer justify-center flex rounded-md border-[1.6px] border-red-700 text-red-700"
               />
               <Button
                 btnText="Save"
-                className="bg-[#DDAA33] rounded-md cursor-pointer "
+                className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
               />
             </div>
           </section>
