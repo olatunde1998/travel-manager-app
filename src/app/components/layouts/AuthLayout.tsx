@@ -58,7 +58,7 @@ export const AuthLayout = ({ children }:AuthLayoutProps) => {
             </ul>
           </div>
           <div className="flex">
-            <div className="min-w-[15.2rem] hidden bg-gray-100 md:block  md:min-w-[19.00rem]  lg:relative border-r xl:min-w-[22.3rem]">
+            <div className="min-w-[15.2rem] hidden  md:block  md:min-w-[19.00rem]  lg:relative border-r xl:min-w-[22.3rem]">
               <AuthSidebar />
             </div>
             {openMobileSidebar && (
@@ -67,7 +67,7 @@ export const AuthLayout = ({ children }:AuthLayoutProps) => {
               </div>
             )}
 
-            <main className="w-full">
+            <main className="w-full bg-gray-200/40">
               <div className="min-h-screen pt-16 pb-6 w-full px-0 md:px-4 md:pt-24">
                 {children}
               </div>

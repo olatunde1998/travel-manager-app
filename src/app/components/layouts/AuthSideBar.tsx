@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { TaskIcon } from "../../../../assets/icons/taskIcon";
 import { ClientIcon } from "../../../../assets/icons/clientIcon";
+import Image from "next/image";
 
 
 export const AuthSidebar = () => {
@@ -47,16 +48,15 @@ export const AuthSidebar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 md:top-[70px] left-0 h-[45.3rem] overflow-y-auto remove-scrollbar md:w-[300px] lg:top-[70px] lg:w-[300px] xl:w-[360px] bg-gray-100">
-      <div className="pt-20 text-center">
-        {/* <Image
-          src="/images/card-images/nodejs.gif"
-          alt="card picx"
-          width={100}
-          height={100}
-          className="border w-full"
-        /> */}
-        logo
+    <nav className="fixed top-0 md:top-[70px] left-0 h-[45.3rem]  md:w-[300px] lg:top-[70px] lg:w-[300px] xl:w-[px]">
+      <div className="relative w-[100px] h-[90px] mx-auto">
+        <Image
+          src="/images/brandLogo-removebg-preview.png"
+          alt="company brand logo"
+          fill
+          className=" w-full"
+        />
+   
       </div>
 
       {tabs.map((tab) => (
@@ -67,7 +67,7 @@ export const AuthSidebar = () => {
           ${
             pathname === tab.href
               ? "border-l-4 border-yellow-500 text-yellow-500 bg-white "
-              : " bg-gray-100 hover:bg-gray-300"
+              : " bg-white"
           }
           `}
         >

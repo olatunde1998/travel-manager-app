@@ -1,14 +1,17 @@
-"use client";
 interface ButtonProps {
-    btnText: string;
+  btnText: string;
+  className: string;
+  onClick?: () => void;
 }
 
-export default function Home({ btnText}:ButtonProps) {
+export const Button = ({ btnText, className, onClick }: ButtonProps) => {
   return (
     <>
-      <div className="min-h-screen  text-gray-600  p-4 md:p-8">
-        <button>{btnText}</button>
+      <div
+        className={`${className} p-3 w-[200px] text-white rounded-md text-center cursor-pointer`}
+      >
+        <button onClick={onClick}>{btnText}</button>
       </div>
     </>
   );
-}
+};

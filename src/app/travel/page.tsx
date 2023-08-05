@@ -1,5 +1,4 @@
 "use client";
-
 import { AuthLayout, HeaderCrumb } from "../components/index";
 
 export default function Home() {
