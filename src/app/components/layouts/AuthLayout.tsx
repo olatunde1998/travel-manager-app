@@ -27,15 +27,16 @@ export const AuthLayout = ({ children }:AuthLayoutProps) => {
       {/* <ProtectedRoutes> */}
       <>
         <div className="relative font-Nunito">
-          <AuthNav onNavToggle={handleNavToggle} />
-          <div className="relative z-20 top-16">
+          <AuthNav onNavToggle={handleNavToggle} setOpenMobileSidebar={setOpenMobileSidebar}
+              openMobileSidebar={openMobileSidebar} />
+          {/* <div className="relative z-20 top-16">
             <ul
               className={`bg-gray-100 bg-opacity-95 text-gray-600 fixed w-full lg:hidden ${
                 isNavOpen ? "translate-x-0" : "translate-x-full"
               } transition-transform`}
-              // onClick={() => {
-              //   setIsNavOpen(false);
-              // }}
+              onClick={() => {
+                setIsNavOpen(false);
+              }}
             >
               <li className="  hover:bg-gray-300 p-4 pt-2">
                 <Link href="/courses">Course Curriculum</Link>
@@ -56,13 +57,13 @@ export const AuthLayout = ({ children }:AuthLayoutProps) => {
                 </span>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="flex">
-            <div className="min-w-[15.2rem] hidden  md:block  md:min-w-[19.00rem]  lg:relative border-r xl:min-w-[22.3rem]">
+            <div className="min-w-[15.2rem] hidden  lg:block  md:min-w-[18.9rem] lg:min-w-[18.5rem] lg:relative border-r xl:min-w-[18.3rem]">
               <AuthSidebar />
             </div>
             {openMobileSidebar && (
-              <div className=" min-w-[14.44rem] border-r">
+               <div className="min-w-[15.2rem] md:block  md:min-w-[0.01rem] ">
                 <AuthSidebar />
               </div>
             )}

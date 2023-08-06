@@ -48,8 +48,8 @@ export const AuthSidebar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 md:top-[70px] left-0 h-[45.3rem]  md:w-[300px] lg:top-[70px] lg:w-[300px] xl:w-[px]">
-      <div className="relative w-[100px] h-[90px] mx-auto">
+    <nav className="fixed top-0 z-30 bg-white h-full md:top-[70px] left-0 h-[45.3rem] w-[200px]  md:w-[300px] lg:top-[70px] lg:w-[280px]">
+      <div className=" mt-20 relative w-[100px] h-[90px] md:mt-0 mx-auto">
         <Image
           src="/images/brandLogo-removebg-preview.png"
           alt="company brand logo"

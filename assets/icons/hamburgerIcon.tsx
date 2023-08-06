@@ -1,8 +1,8 @@
 interface hamburgerIconProps {
-    color: string;
+    color?: string;
     className?: string;
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
   }
 
 
