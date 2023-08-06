@@ -6,8 +6,15 @@ import {
   HeaderCrumb,
 } from "@/app/components";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+
+  }
   return (
     <>
       <AuthLayout>
@@ -124,7 +131,7 @@ export default function Home() {
               </div>
             </div>
             <div className="justify-center md:justify-end flex pr-8">
-              <Button btnText="Back" />
+              <Button btnText="Back" className="bg-[#DDAA33] text-white justify-center flex" handleBtnClick={handleBack} />
             </div>
           </section>
         </main>

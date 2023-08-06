@@ -30,14 +30,14 @@ export const TableMain = ({ data, columns = [], tableClass, }) => {
         <table
           className={"w-full h-full rounded-[0.25rem] " + " " + tableClass}
         >
-          <thead className="text-xs">
+          <thead className="text-xs border-b-[2px]  border-[#DDAA33]">
             {/* Mapping through the table headers */}
             {table?.getHeaderGroups()?.map((headerGroup, i) => (
               <tr key={i}>
                 {headerGroup.headers.map((header, idx) => (
                   <th
                     key={idx}
-                    className="py-4 px-5 text-left font-bold uppercase text-sm"
+                    className=" bg-[#FBF6EB] p-6  text-left font-bold capitalize text-sm"
                   >
                     {header.isPlaceholder
                       ? null
@@ -55,12 +55,11 @@ export const TableMain = ({ data, columns = [], tableClass, }) => {
             {table.getRowModel().rows.map((row, index) => (
               <tr
                 key={index}
-                className={`border-b border-[#213f7d1a] border-x-none text-sm ${
-                  (index + 1) % 2 === 0 ? " bg-white " : "bg-[#F9F9F9]"
-                }`}
+                className="cursor-pointer border-x-none text-sm border-b-[1px] border-gray-100 hover:bg-[#FBF6EB]  bg-white hover:border-l-[2px] hover:border-[#DDAA33] hover:border-b-0"
+                
               >
                 {row.getVisibleCells().map((cell, key) => (
-                  <td key={key} className="py-3 px-5">
+                  <td key={key} className="py-6 ">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -68,46 +67,6 @@ export const TableMain = ({ data, columns = [], tableClass, }) => {
             ))}
           </tbody>
         </table>
-
-        <>
-          {/* Display this for table without data */}
-          {/* <div className="font-bold text-4xl w-full h-[32.3rem] rounded-[0.25rem]">
-          <div className="flex items-center justify-center self-center leading-[30rem]">
-          No Data
-          </div>
-        </div> */}
-        </>
-      </div>
-
-      {/* Pagination only when table has content*/}
-      <div className="flex items-center gap-x-8 justify-between px-4 py-5  rounded-b-[0.5rem]">
-        <span className="flex items-center gap-1  text-small text-epps-stalegray-500">
-          <div className="hidden sm:block">Showing</div>
-          {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </span>
-        <div className="space-x-5">
-          <button
-            className="bg-[#213f7d1a] p-1 rounded-[.25rem] cursor-pointer"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {/* <PrevIcon
-              color={!table.getCanPreviousPage() ? "#213f7d66" : "#213F7D"}
-            /> */}
-          </button>
-          <span className="text-epps-stalegray-500">
-            {table.getState().pagination.pageIndex + 1}
-          </span>
-          <button
-            className="bg-[#213f7d1a] p-1 rounded-[.25rem] cursor-pointer"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            {/* <NextIcon
-              color={!table.getCanNextPage() ? "#213f7d66" : "#213F7D"}
-            /> */}
-          </button>
-        </div>
       </div>
     </div>
   );

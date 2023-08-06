@@ -1,9 +1,10 @@
 "use client";
 import { AuthLayout, Button, HeaderCrumb, Input } from "@/app/components";
-
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-    
+  const router = useRouter();
+
   return (
     <>
       <AuthLayout>
@@ -39,15 +40,17 @@ export default function Home() {
               </div>
 
               <div className="flex justify-between pr-0 lg:justify-end  gap-6">
-              <Button
-                btnText="Cancel"
-                className="cursor-pointer justify-center flex rounded-md border-[1.6px] border-red-700 text-red-700"
-              />
-              <Button
-                btnText="Save"
-                className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
-              />
-            </div>
+                <Button
+                  handleBtnClick={() => router.back()}
+                  btnText="Cancel"
+                  className="cursor-pointer justify-center flex rounded-md border-[1.6px] border-red-700 text-red-700"
+                />
+                <Button
+                  handleBtnClick={() => router.back()}
+                  btnText="Save"
+                  className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
+                />
+              </div>
             </form>
           </div>
         </main>

@@ -75,7 +75,7 @@ export default function Home() {
   // Table columns
   const columns = [
     columnHelper.accessor("name", {
-      cell: (info) => <span className="">{info.renderValue()}</span>,
+      cell: (info) => <span className="p-6">{info.renderValue()}</span>,
       header: () => <span>Name</span>,
     }),
 
@@ -95,7 +95,7 @@ export default function Home() {
       header: () => "Status",
       cell: (info) => (
         <div
-          className={`py-1 px-4 rounded-full w-[6rem] text-center capitalize ${
+          className={`rounded-full w-[100px] text-center capitalize ${
             info.getValue().toLowerCase() === "active"
               ? "bg-[#39cd620f]"
               : "bg-[#5252520f]"
@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       ),
     }),
-    columnHelper.accessor("application_uuid", {
+    columnHelper.accessor("view detail", {
       cell: ({ row }) => (
         <div className="relative">
           <div
@@ -113,9 +113,9 @@ export default function Home() {
               setSelectedRow(row.original);
               setShowActions(!showActions);
             }}
-            className="cursor-pointer flex py-2 gap-x-2 items-center justify-center "
+            className="cursor-pointer"
           >
-            <span className="text-lg pl-2 font-bold">:</span>
+            <span className="text-lg font-bold">:</span>
           </div>
           {showActions && row?.original?.id === selectedRow?.id && (
             <div className="bg-white cursor-pointer shadow-shadowOne rounded-[.25rem] border border-[#213f7d0f] p-2 space-y-3 absolute z-[1] top-[36px] right-[20px] w-[140px]  md:p-3">

@@ -8,13 +8,13 @@ import {
 } from "../components/index";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
   const handleAddNewClient = () => {
     router.push("/client/add-client");
-    
-  }
+  };
   const paymentTypes = [
     {
       name: "Mayokun Odusote",
@@ -59,20 +59,40 @@ export default function Home() {
   // Table columns
   const columns = [
     columnHelper.accessor("name", {
-      cell: (info) => <span className="">{info.renderValue()}</span>,
+      cell: (info) => (
+        <Link href="/client/client-profile" className="xl:p-4">
+          {" "}
+          <span className="px-2 xl:p-4">{info.renderValue()}</span>
+        </Link>
+      ),
       header: () => <span>Name</span>,
     }),
 
     columnHelper.accessor("email", {
-      cell: (info) => <span>{info.renderValue()}</span>,
+      cell: (info) => (
+        <Link href="/client/client-profile" className=" xl:p-4">
+          {" "}
+          <span className="px-2 xl:p-4">{info.renderValue()}</span>
+        </Link>
+      ),
       header: () => <span>Email</span>,
     }),
     columnHelper.accessor("phone", {
-      cell: (info) => <span>{info.renderValue()}</span>,
+      cell: (info) => (
+        <Link href="/client/client-profile" className="xl:p-4">
+          {" "}
+          <span className="px-2 xl:p-4">{info.renderValue()}</span>
+        </Link>
+      ),
       header: () => <span>Phone</span>,
     }),
     columnHelper.accessor("address", {
-      cell: (info) => <span>{info.renderValue()}</span>,
+      cell: (info) => (
+        <Link href="/client/client-profile" className=" xl:p-4">
+          {" "}
+          <span className="px- xl:p-4">{info.renderValue()}</span>
+        </Link>
+      ),
       header: () => <span>Residential Address</span>,
     }),
   ];
@@ -86,11 +106,17 @@ export default function Home() {
 
           <div className="my-8 flex items-center justify-between">
             <div className="p-2 w-full">
-              <input type="text" placeholder="Search by name, email ...." className="w-full border-2 border-gray-200 p-2 rounded-md" />
+              <input
+                type="text"
+                placeholder="Search by name, email ...."
+                className="w-full border-2 border-gray-200 p-2 rounded-md"
+              />
             </div>
             <div onClick={handleAddNewClient}>
-
-            <Button btnText="Add new Client" className="bg-[#DDAA33] justify-center flex text-white" />
+              <Button
+                btnText="Add new Client"
+                className="bg-[#DDAA33] justify-center flex text-white"
+              />
             </div>
           </div>
           <TableMain
@@ -103,5 +129,3 @@ export default function Home() {
     </>
   );
 }
-
-
