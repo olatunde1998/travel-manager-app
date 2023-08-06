@@ -16,7 +16,7 @@ export const Input = ({
   return (
     <>
       <div className={`${className} rounded-md cursor-pointer`}>
-        <label htmlFor={name} className="mb-1 font-semibold text-sm flex">
+        <label htmlFor={name} className="font-semibold text-sm flex">
           {label} <span className="ml-1 text-red-700 font-normal text-[10px] hidden lg:block">{focusContent}</span>
         </label>
         <input

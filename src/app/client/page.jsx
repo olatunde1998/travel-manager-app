@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import {
   AuthLayout,
   Button,
@@ -17,40 +16,46 @@ export default function Home() {
   };
   const paymentTypes = [
     {
-      name: "Mayokun Odusote",
-      email: "odusote@gmail.com",
-      phone: "08012345678",
-      address: "No 1, Opebi Road, Ikeja, Lagos",
+      id: 1,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      name: "Mayokun Odusote",
-      email: "mayokun@gmail.com",
-      phone: "08012345678",
-      address: "No 1, Opebi Road, Ikeja, Lagos",
+      id: 2,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      name: "Mayokun Odusote",
-      email: "odusote@gmail.com",
-      phone: "08012345678",
-      address: "No 1, Opebi Road, Ikeja, Lagos",
+      id: 3,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      name: "Mayokun Odusote",
-      email: "mayokun@gmail.com",
-      phone: "08012345678",
-      address: "No 1, Opebi Road, Ikeja, Lagos",
+      id: 4,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      name: "Mayokun Odusote",
-      email: "odusote@gmail.com",
-      phone: "08012345678",
-      address: "No 1, Opebi Road, Ikeja, Lagos",
+      id : 5,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      name: "Mayokun Odusote",
-      email: "mayokun@gmail.com",
-      phone: "08012345678",
-      address: "No 1, Opebi Road, Ikeja, Lagos",
+      id : 6,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
   ];
 
@@ -60,9 +65,9 @@ export default function Home() {
   const columns = [
     columnHelper.accessor("name", {
       cell: (info) => (
-        <Link href="/client/client-profile" className="xl:p-4">
+        <Link href="/client/client-profile" className="">
           {" "}
-          <span className="px-2 xl:p-4">{info.renderValue()}</span>
+          <span className="pl-4">{info.renderValue()}</span>
         </Link>
       ),
       header: () => <span>Name</span>,
@@ -72,25 +77,25 @@ export default function Home() {
       cell: (info) => (
         <Link href="/client/client-profile" className=" xl:p-4">
           {" "}
-          <span className="px-2 xl:p-4">{info.renderValue()}</span>
+          <span className="pl-4">{info.renderValue()}</span>
         </Link>
       ),
       header: () => <span>Email</span>,
     }),
     columnHelper.accessor("phone", {
       cell: (info) => (
-        <Link href="/client/client-profile" className="xl:p-4">
+        <Link href="/client/client-profile" className="">
           {" "}
-          <span className="px-2 xl:p-4">{info.renderValue()}</span>
+          <span className="pl-4 mr-8">{info.renderValue()}</span>
         </Link>
       ),
       header: () => <span>Phone</span>,
     }),
     columnHelper.accessor("address", {
       cell: (info) => (
-        <Link href="/client/client-profile" className=" xl:p-4">
+        <Link href="/client/client-profile" className="">
           {" "}
-          <span className="px- xl:p-4">{info.renderValue()}</span>
+          <span className="">{info.renderValue()}</span>
         </Link>
       ),
       header: () => <span>Residential Address</span>,
@@ -104,8 +109,8 @@ export default function Home() {
           <HeaderCrumb prevLink="Client" nextLink="" />
           <p className="my-4">Here&apos;s the clients list</p>
 
-          <div className="my-8 flex items-center justify-between">
-            <div className="p-2 w-full">
+          <div className="my-8 lg:flex items-center justify-between">
+          <div className="mb-2 md:p-2 md:w-full md:mb-0 md:pl-0">
               <input
                 type="text"
                 placeholder="Search by name, email ...."

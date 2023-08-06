@@ -1,12 +1,22 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AuthLayout, Button, HeaderCrumb, Input } from "../components/index";
+import {
+  AuthLayout,
+  Button,
+  HeaderCrumb,
+  Input,
+  Selector,
+  TextArea,
+} from "../components/index";
 
 export default function Home() {
   const router = useRouter();
   const handleSaveBtn = () => {
-    router.push("/client");
+    router.back();
+  };
+  const handleSelect = (value: any) => {
+    console.log(value);
   };
   return (
     <>
@@ -32,19 +42,25 @@ export default function Home() {
                       <Input type="text" label="To" />
                     </div>
                   </div>
-                  <Input type="text" label="Description" />
+                  <TextArea rows="6" label="Description" />
                 </div>
                 {/* right input container */}
-
                 <div className="w-full  space-y-6 md:w-1/2">
                   <Input type="text" label="Date" />
                   <p className="my-4 text-white">Duration</p>
-
-                  <Input type="text" label="Assign Travel Consultant" />
+                    <Selector
+                      label="Assign Travel Consultant"
+                      placeholder="search"
+                      onSelect={handleSelect}
+                      selectOption=""
+                      focusContent=""
+                    />
                 </div>
               </div>
-
-              <div className="flex justify-center mt-6 pr-0 lg:justify-end  gap-6 md:my-14">
+              <div
+                onClick={handleSaveBtn}
+                className="flex justify-center mt-6 pr-0 lg:justify-end  gap-6 md:my-14"
+              >
                 <Button
                   btnText="Save"
                   className="bg-[#DDAA33] rounded-md cursor-pointer justify-center flex text-white "

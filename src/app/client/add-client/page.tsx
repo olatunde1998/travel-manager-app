@@ -2,9 +2,10 @@
 import {
   AuthLayout,
   Button,
-  ClientDetails,
   HeaderCrumb,
   Input,
+  Selector,
+  TextArea,
 } from "@/app/components";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -13,6 +14,9 @@ export default function Home() {
   const router = useRouter();
   const handleCancelBtn = () => {
     router.push("/client");
+  };
+  const handleSelect = (value: any) => {
+    console.log(value);
   };
   return (
     <>
@@ -48,7 +52,6 @@ export default function Home() {
               </div>
             </div>
             {/* client details */}
-
             <div className="block space-y-4  my-20 md:flex md:space-x-4 md:space-y-0 lg:space-x-10">
               <div className="w-full space-y-6 md:w-1/2">
                 <Input type="text" label="Full Name" />
@@ -67,21 +70,35 @@ export default function Home() {
                 </div>
                 <Input type="text" label="Marital Status" />
                 <Input type="text" label="Current Occupation" />
-                <Input type="text" label="Residental Address" />
+                <TextArea rows="6" label="Residental Address" />
                 <Input type="text" label="Country of Interest" />
               </div>
 
               <div className="w-full space-y-6 md:w-1/2">
                 <Input type="email" label="Email" />
-                <Input type="gender" label="Gender" />
-                <Input type="text" label="Country of Citizenship" />
-                <Input
-                  type="gender"
+                <Selector
+                  label="Gender"
+                  focusContent=""
+                  placeholder="search"
+                  onSelect={handleSelect}
+                  selectOption=""
+                />
+                <Selector
+                  label="Country of Citizenship"
+                  focusContent=""
+                  placeholder="search"
+                  onSelect={handleSelect}
+                  selectOption=""
+                />
+                <Selector
                   label="Education"
                   focusContent="(Client's highest level of Education)"
+                  placeholder="search"
+                  onSelect={handleSelect}
+                  selectOption=""
                 />
                 <Input type="number" label="Phone Number" />
-                <Input type="number" label="Mailing Address" />
+                <TextArea rows="6" label="Mailing Address" />
                 <Input type="number" label="Purpose of Travaling" />
               </div>
             </div>

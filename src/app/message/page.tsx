@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
-import { AuthLayout, Button, HeaderCrumb, Input } from "../components/index";
+import { AuthLayout, Button, HeaderCrumb, Input, Selector, TextArea } from "../components/index";
 import { GiCancel } from "react-icons/gi";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("Email");
+  const handleSelect = (value: any) => {
+    console.log(value);
+  };
   return (
     <>
       <AuthLayout>
@@ -70,14 +73,19 @@ export default function Home() {
                           </li>
                         </ul>
                       </div>
-                      <Input type="text" label="Receiver(s)" />
+                      <Selector
+                        label="Receiver(s)"
+                        focusContent=""
+                        placeholder="search"
+                        onSelect={handleSelect}
+                        selectOption=""
+                      />
                     </div>
                     {/* right input container */}
                     <div className="w-full  space-y-6 md:w-1/2">
                       <Input type="text" label="Subject" />
                       <div className="pt-5  lg:pt-0">
-
-                      <Input type="text" label="Description" />
+                      <TextArea rows="6" label="Description" />
                       </div>
                     </div>
                   </div>
@@ -123,10 +131,16 @@ export default function Home() {
                       </div>
                       <div className="space-y-4 w-full md:flex md:justify-between gap-2 md:space-y-0">
                         <div className="w-full md:w-1/2">
-                          <Input type="text" label="Receiver(s)" />
+                        <Selector
+                        label="Receiver(s)"
+                        focusContent=""
+                        placeholder="search"
+                        onSelect={handleSelect}
+                        selectOption=""
+                      />
                         </div>
                         <div className="w-full md:w-1/2">
-                          <Input type="text" label="Description" />
+                        <TextArea rows="6" label="Description" />
                         </div>
                       </div>
                     </div>

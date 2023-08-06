@@ -1,9 +1,12 @@
 "use client";
-import { AuthLayout, Button, HeaderCrumb, Input } from "@/app/components";
+import { AuthLayout, Button, HeaderCrumb, Input, Selector, TextArea } from "@/app/components";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
+  const handleSelect = (value: any) => {
+    console.log(value);
+  };
 
   return (
     <>
@@ -29,11 +32,18 @@ export default function Home() {
                       <Input type="text" label="Date" />
                     </div>
                   </div>
-                  <Input type="text" label="Description" />
+                  <TextArea rows="6"  label="Description"  />
                 </div>
+                
                 {/* right input container */}
-
                 <div className="w-full  space-y-6 md:w-1/2">
+                <Selector
+                  label="Status"
+                  focusContent=""
+                  placeholder="Draft"
+                  onSelect={handleSelect}
+                  selectOption=""
+                />
                   <Input type="text" label="Status" />
                   <Input type="text" label="Purpose" />
                 </div>
