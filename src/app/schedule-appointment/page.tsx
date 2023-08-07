@@ -18,6 +18,7 @@ export default function Home() {
   const handleSelect = (value: any) => {
     console.log(value);
   };
+  const consultantData = ["Ademola Oloriola", "Jane Doe", "John Doe", "Bello Oloriola", "Jane Doe", "Richard Johnson"]
   return (
     <>
       <AuthLayout>
@@ -26,7 +27,7 @@ export default function Home() {
           <p className="my-2 text-gray-500">Add a new Appointment here</p>
 
           <div className=" mt-4 font-semibold bg-white p-2 md:p-4 md:pt-8 md:mt-8">
-            <p>Enter Appointment details</p>
+            <p className="font-bold mb-10">Enter Appointment details</p>
 
             <form className="mt-4">
               <div className="block space-y-4  my-0 md:flex md:space-x-4 md:space-y-0 lg:space-x-10">
@@ -54,6 +55,7 @@ export default function Home() {
                       onSelect={handleSelect}
                       selectOption=""
                       focusContent=""
+                      inputData={consultantData}
                     />
                 </div>
               </div>

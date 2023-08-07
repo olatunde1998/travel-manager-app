@@ -1,23 +1,19 @@
 interface ButtonProps {
   btnText?: string;
   className?: string;
-  handleBtnClick?: () => void;
+  handleBtnClick?: any;
   btnIcon?: any;
 }
 
 export const Button = ({ btnText, className, handleBtnClick }: ButtonProps) => {
   return (
     <>
-      <div
-        className={`${className} p-3 w-[200px] rounded-md text-center cursor-pointer`}
+      <button
+        onClick={handleBtnClick}
+        className={`${className} p-3 w-[200px] rounded-md text-center cursor-pointer flex items-center justify-center`}
       >
-        <button
-          onClick={handleBtnClick}
-          className="flex items-center justify-center"
-        >
-          {btnText}
-        </button>
-      </div>
+        {btnText}
+      </button>
     </>
   );
 };
@@ -30,17 +26,13 @@ export const IconButton = ({
 }: ButtonProps) => {
   return (
     <>
-      <div
-        className={`${className} p-3 w-[200px] rounded-md text-center cursor-pointer`}
+      <button
+        onClick={handleBtnClick}
+        className={`${className} p-3 w-[200px] rounded-md text-center cursor-pointer flex items-center justify-center`}
       >
-        <button
-          onClick={handleBtnClick}
-          className="flex items-center justify-center"
-        >
-          <span className="mr-4 ml-2">{btnIcon}</span>
-          {btnText}
-        </button>
-      </div>
+        <span className="mr-4 ml-2">{btnIcon}</span>
+        {btnText}
+      </button>
     </>
   );
 };

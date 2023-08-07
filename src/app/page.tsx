@@ -42,7 +42,7 @@ export default function Home() {
     successNotifying();
     setTimeout(() => {
       router.push("/workspace");
-    }, 5000);
+    }, 2000);
   };
   return (
     <>

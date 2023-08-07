@@ -11,6 +11,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const genderData =["Male", "Female"]
+  const educationData = ["Primary", "Secondary", "Tertiary", "Masters", "PhD"]
+  const countryData = ["Nigeria", "Ghana", "South Africa", "Kenya", "Togo", "Benin"]
   const router = useRouter();
   const handleCancelBtn = () => {
     router.push("/client");
@@ -30,7 +33,7 @@ export default function Home() {
 
           <section className="bg-white pb-10 pt-10 px-3 mt-10 rounded-md md:px-6">
             <div className="mt-10 rounded-md md:pl-6 py-6 bg-gray-200/40">
-              <p className="font-semibold ml-0 text-center md:ml-3 md:text-left">
+              <p className="font-bold ml-0 text-center md:ml-3 md:text-left">
                 Client&apos;s Picture
               </p>
               <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
@@ -75,7 +78,15 @@ export default function Home() {
                 <Input type="text" label="Marital Status" />
                 <Input type="text" label="Current Occupation" />
                 <TextArea rows="6" label="Residental Address" />
-                <Input type="text" label="Country of Interest" />
+                {/* <Input type="text" label="Country of Interest" /> */}
+                <Selector
+                  label="Country of Interest"
+                  focusContent=""
+                  placeholder="Draft"
+                  onSelect={handleSelect}
+                  selectOption=""
+                  inputData={countryData}
+                />
               </div>
 
               <div className="w-full space-y-6 md:w-1/2">
@@ -85,6 +96,7 @@ export default function Home() {
                   focusContent=""
                   placeholder="search"
                   onSelect={handleSelect}
+                  inputData={genderData}
                   selectOption=""
                 />
                 <Selector
@@ -93,6 +105,7 @@ export default function Home() {
                   placeholder="search"
                   onSelect={handleSelect}
                   selectOption=""
+                  inputData={countryData}
                 />
                 <Selector
                   label="Education"
@@ -100,10 +113,11 @@ export default function Home() {
                   placeholder="search"
                   onSelect={handleSelect}
                   selectOption=""
+                  inputData={educationData}
                 />
                 <Input type="number" label="Phone Number" />
-                <TextArea rows="6" label="Mailing Address" />
-                <Input type="number" label="Purpose of Travaling" />
+                <TextArea rows="6" label="Mailing Address"  />
+                <Input type="text" label="Purpose of Travaling" />
               </div>
             </div>
             <div className="flex justify-between pr-0 lg:justify-end  gap-6">

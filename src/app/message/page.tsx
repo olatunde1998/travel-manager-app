@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
-import { AuthLayout, Button, HeaderCrumb, Input, Selector, TextArea } from "../components/index";
+import {
+  AuthLayout,
+  Button,
+  HeaderCrumb,
+  Input,
+  Selector,
+  TextArea,
+} from "../components/index";
 import { GiCancel } from "react-icons/gi";
 
 export default function Home() {
@@ -8,6 +15,14 @@ export default function Home() {
   const handleSelect = (value: any) => {
     console.log(value);
   };
+  const receiverData = [
+    "Moremi Oloriola",
+    "Ademola Oloriola",
+    "Moremi Oloriola",
+    "Jane Doe",
+    "John Doe",
+    "Moremi Oloriola",
+  ];
   return (
     <>
       <AuthLayout>
@@ -79,13 +94,14 @@ export default function Home() {
                         placeholder="search"
                         onSelect={handleSelect}
                         selectOption=""
+                        inputData={receiverData}
                       />
                     </div>
                     {/* right input container */}
                     <div className="w-full  space-y-6 md:w-1/2">
                       <Input type="text" label="Subject" />
                       <div className="pt-5  lg:pt-0">
-                      <TextArea rows="6" label="Description" />
+                        <TextArea rows="6" label="Description" />
                       </div>
                     </div>
                   </div>
@@ -108,7 +124,7 @@ export default function Home() {
                     {/* left input container */}
                     <div className="w-full  space-y-6">
                       <div className="lg:mt-12">
-                      <ul className="font-normal text-[12px] space-y-2 md:flex lg:text-[8px]  gap-2">
+                        <ul className="font-normal text-[12px] space-y-2 md:flex lg:text-[8px]  gap-2">
                           <li className="bg-[#E3E3E3]  w-[140px] p-1  pl-2 flex items-center justify-between rounded-full">
                             Moremi Olareola{" "}
                             <span className="cursor-pointer mr-2">
@@ -131,16 +147,17 @@ export default function Home() {
                       </div>
                       <div className="space-y-4 w-full md:flex md:justify-between gap-2 md:space-y-0">
                         <div className="w-full md:w-1/2">
-                        <Selector
-                        label="Receiver(s)"
-                        focusContent=""
-                        placeholder="search"
-                        onSelect={handleSelect}
-                        selectOption=""
-                      />
+                          <Selector
+                            label="Receiver(s)"
+                            focusContent=""
+                            placeholder="search"
+                            onSelect={handleSelect}
+                            selectOption=""
+                            inputData={receiverData}
+                          />
                         </div>
                         <div className="w-full md:w-1/2">
-                        <TextArea rows="6" label="Description" />
+                          <TextArea rows="6" label="Description" />
                         </div>
                       </div>
                     </div>

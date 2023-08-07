@@ -31,9 +31,9 @@ export const AuthNav = ({
 
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-x-8">
-            <NotificationIcon width={30} height={30} />
+            <NotificationIcon width={30} height={30} bgColor="#C5C7CD" className="cursor-pointer"/>
             <p className="font-semibold hidden lg:block">Kelvin</p>
-            <span className=" ">
+            <span className="cursor-pointer ">
               <Image
                 src={AvatarImage}
                 alt="user picture"

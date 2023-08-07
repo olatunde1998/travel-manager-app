@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
+import { BiSolidDownArrow } from "react-icons/bi";
 
 export const Selector = ({
   placeholder,
@@ -7,6 +7,7 @@ export const Selector = ({
   selectOption,
   label,
   focusContent,
+  inputData,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
@@ -20,50 +21,48 @@ export const Selector = ({
       onSelect ? onSelect(item) : null;
     }
   };
-  const inputData = ["javascript", "Python", "Golang", "Java", "C++", "Rust"];
-
+  
   return (
-    <div className="text-sm ">
+    <div className="text-sm space-y-3">
       <p className="font-semibold flex">
-        {label}{" "}
-        <span className="ml-1 text-red-700 font-normal text-[10px] hidden lg:block">
+        {label}
+        <span className="ml-1 text-red-700  text-[10px] hidden lg:block">
           {focusContent}
         </span>
       </p>
-      <div
-        onClick={() => setOpen(!open)}
-        className={`bg-white mt-1  border-[1.5px] border-gray-200 py-3 px-[1.5px]  flex items-cent justify-end rounded md:px-2 ${
-          !selected && "text-black"
-        }`}
-      >
-        {selected
-          ? selected?.length > 25
-            ? selected?.substring(0, 25) + "..."
-            : selected
-          : selectOption}
-        <BiChevronDown
-          size={20}
-          className={`cursor-pointer ${open && "rotate-180"}`}
-        />
-      </div>
+      <div className="relative">
+        <div
+          onClick={() => setOpen(!open)}
+          className={`bg-white w-full p-3 flex items-center justify-between rounded border-[1.5px] border-gray-200 font-normal ${
+            !selected && "text-gray-200"
+          }`}
+        >
+          {selected
+            ? selected?.length > 25
+              ? selected?.substring(0, 25) + "..."
+              : selected
+            : "Select an option"}
+          <BiSolidDownArrow size={12} className={` text-gray-400 ${open && "rotate-180"}`} />
+        </div>
 
-      <ul
-        className={`shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-white mt-2 overflow-y-auto w-[38%]  absolute ${
-          open ? "max-h-60" : "max-h-0"
-        } `}
-      >
-        {inputData?.map((item, idx) => (
-          <li
-            key={idx}
-            className={`p-2 pl-4 pt-3 text-sm hover:bg-[#FBF6EB] hover:text-black
+        <ul
+          className={`shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-white mt-2 overflow-y-auto w-full font-normal ${
+            open ? "max-h-60" : "max-h-0"
+          } absolute top-full w-full z-50`}
+        >
+          {inputData?.map((item, idx) => (
+            <li
+              key={idx}
+              className={`p-2 pl-4 pt-3 text-sm hover:bg-[#FBF6EB] hover:text-black
             ${item?.toLowerCase() === selected?.toLowerCase() && ""}
             ${item?.toLowerCase().startsWith(inputValue) ? "block" : "hidden"}`}
-            onClick={() => handleSelect(item)}
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
+              onClick={() => handleSelect(item)}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

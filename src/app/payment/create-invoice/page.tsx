@@ -8,6 +8,8 @@ export default function Home() {
     console.log(value);
   };
 
+  const statusData = ["Draft", "Sent", "Paid", "Cancelled", "Declined"];
+
   return (
     <>
       <AuthLayout>
@@ -16,7 +18,7 @@ export default function Home() {
           <p className="my-2 text-gray-500">Create a new invoice here</p>
 
           <div className=" mt-4 font-semibold bg-white p-2 md:p-4 md:pt-8 md:mt-8">
-            <p>Enter Invoice details</p>
+            <p className="font-bold mb-10">Enter Invoice details</p>
 
             <form className="mt-4">
               <div className="block space-y-4  my-0 md:flex md:space-x-4 md:space-y-0 lg:space-x-10">
@@ -43,13 +45,14 @@ export default function Home() {
                   placeholder="Draft"
                   onSelect={handleSelect}
                   selectOption=""
+                  inputData={statusData}
                 />
                   <Input type="text" label="Status" />
                   <Input type="text" label="Purpose" />
                 </div>
               </div>
 
-              <div className="flex justify-between pr-0 lg:justify-end  gap-6">
+              <div className="flex justify-between pr-0 lg:justify-end  gap-6 mt-10 mb-16">
                 <Button
                   handleBtnClick={() => router.back()}
                   btnText="Cancel"

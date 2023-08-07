@@ -7,5 +7,6 @@ export * from "./backIcon";
 export * from "./hamburgerIcon";
 export * from "./notificationIcon";
 export * from "./loginBackground";
+export * from "./searchIcon";
 
 export { AvatarImage };
