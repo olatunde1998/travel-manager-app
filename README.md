@@ -1,8 +1,8 @@
 # Travel Manager Web Application
 
 Hello, 👋 \
-Travel Manager Web Application allows users to search for course of their choice and learn it within their vicinity. Travel Manager Web Application sort the issues of going to classes and stress for all the users.
-```
+Travel Manager Web Application allows users to search for course of their choice and learn it within their vicinity. Travel Manager App for managing your travel plans.
+
 Here's some notes about my submission:
 
 1. A link to the project repository  https://github.com/olatunde1998/travel-manager-app
@@ -14,7 +14,6 @@ Thank you very much.
 Best regards
 Rasheed Olatunde
 
-```
 # Technologies 
 
  + [JavaScript](https://javascript.info/) 
