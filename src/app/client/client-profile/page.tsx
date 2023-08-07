@@ -8,13 +8,11 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
 export default function Home() {
   const router = useRouter();
   const handleBack = () => {
     router.back();
-
-  }
+  };
   return (
     <>
       <AuthLayout>
@@ -22,13 +20,13 @@ export default function Home() {
           <HeaderCrumb prevLink="Client Profile" nextLink="" />
           <p className="my-2 text-gray-500">View Client Profile here</p>
 
-          <section className="bg-white pb-20 pt-10 px-6 mt-10 rounded-md">
-            <div className="mt-10 rounded-md pl-6 py-6 bg-gray-200/40">
-              <p className="font-semibold ml-3">Client Picture</p>
-              <div className="flex items-center  mt-6 max-w-[400px]">
-                <div className="relative md:h-[90px] md:w-[100px]">
+          <section className="bg-white pb-20 pt-10 px-4 md:px-6 mt-10 rounded-md">
+            <div className="mt-10 rounded-md pl-4 md:pl-6 py-6 bg-gray-200/40">
+              <p className="font-semibold ml-2">Client Picture</p>
+              <div className="md:flex items-center  mt-6 max-w-[400px]">
+                <div className="relative mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mr-6">
                   <Image
-                    src="/images/brandLogo-removebg-preview.png"
+                    src="/images/clientImg.png"
                     fill
                     className="w-full"
                     alt="client picture"
@@ -36,11 +34,13 @@ export default function Home() {
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold ">Odusote Mayokun</p>
-                  <p className="text-gray-500">adegoketemitope1909@gmial.com</p>
-                  <p className="flex gap-4 text-gray-500">
-                    <span>female</span>
-                    <span>54years old</span> <span>Nigerian</span>
+                  <p className="text-gray-500 text-[14px] md:text-[16px]">
+                    adegoketemitope1909@gmial.com
                   </p>
+                  <div className=" text-[14px] md:text-[16px] md:flex gap-4 text-gray-500">
+                    <p>female</p>
+                    <p>54years old</p> <p>Nigerian</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function Home() {
                 />
               </div>
 
-              <div className="space-y-6">
+              <div className="mt-6 space-y-6 md:mt-0">
                 <ClientDetails
                   title="Email"
                   content="adegoketemitope1909@abc.om"
@@ -131,7 +131,11 @@ export default function Home() {
               </div>
             </div>
             <div className="justify-center md:justify-end flex pr-8">
-              <Button btnText="Back" className="bg-[#DDAA33] text-white justify-center flex" handleBtnClick={handleBack} />
+              <Button
+                btnText="Back"
+                className="bg-[#DDAA33] text-white justify-center flex"
+                handleBtnClick={handleBack}
+              />
             </div>
           </section>
         </main>

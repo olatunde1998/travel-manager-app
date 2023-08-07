@@ -6,12 +6,9 @@ import {
   getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
-// import { NextIcon, PrevIcon } from "assets/icons/TableIcons";
 
 
-
-
-export const TableMain = ({ data, columns = [], tableClass, }) => {
+export const TableMain = ({ data, columns = [], tableClass, filters }) => {
   const table = useReactTable({
     data,
     columns,
@@ -20,7 +17,7 @@ export const TableMain = ({ data, columns = [], tableClass, }) => {
     getPaginationRowModel: getPaginationRowModel(),
     enableColumnResizing: true,
     debugTable: true,
-    // filters,
+    filters,
   });
 
   return (

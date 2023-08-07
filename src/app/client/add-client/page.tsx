@@ -15,6 +15,9 @@ export default function Home() {
   const handleCancelBtn = () => {
     router.push("/client");
   };
+  const handleSaveBtn = () => {
+    router.push("/client");
+  };
   const handleSelect = (value: any) => {
     console.log(value);
   };
@@ -26,15 +29,16 @@ export default function Home() {
           <p className="my-2 text-gray-500">Add a new Client here</p>
 
           <section className="bg-white pb-10 pt-10 px-3 mt-10 rounded-md md:px-6">
-            <div className="mt-10 rounded-md pl-6 py-6 bg-gray-200/40">
+            <div className="mt-10 rounded-md md:pl-6 py-6 bg-gray-200/40">
               <p className="font-semibold ml-0 text-center md:ml-3 md:text-left">
                 Client&apos;s Picture
               </p>
-              <div className="md:flex items-center  mt-6 max-w-[400px]">
-                <div className="relative h-[90px] w-[100px] mx-auto my-4 md:mx-0 md:my-0">
+              <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
+              <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mb-0 md:mr-6">
                   <Image
-                    src="/images/brandLogo-removebg-preview.png"
-                    fill
+                    src="/images/clientImg.png"
+                    width={100}
+                    height={100}
                     className="w-full h-full"
                     alt="client picture"
                   />
@@ -110,6 +114,7 @@ export default function Home() {
               />
               <Button
                 btnText="Save"
+                handleBtnClick={handleSaveBtn}
                 className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
               />
             </div>

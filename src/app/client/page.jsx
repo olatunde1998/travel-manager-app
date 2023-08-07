@@ -8,52 +8,60 @@ import {
 import { createColumnHelper } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [searchFilter, setSearchFilter] = useState("");
   const router = useRouter();
+
   const handleAddNewClient = () => {
     router.push("/client/add-client");
   };
-  const paymentTypes = [
+  // Handle search filter change
+  const handleSearchFilterChange = (event) => {
+    setSearchFilter(event.target.value);
+  };
+
+  const clientDatas = [
     {
       id: 1,
       name: "Adegoke Oluwadailare",
       email: "adegoketemitope1909@gmail.com",
-      phone: "08160730668",
+      phone: "08133642798",
       address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
       id: 2,
-      name: "Adegoke Oluwadailare",
-      email: "adegoketemitope1909@gmail.com",
-      phone: "08160730668",
+      name: "Ade Oluwadailare",
+      email: "temitopeade1909@gmail.com",
+      phone: "08117740042",
       address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
       id: 3,
-      name: "Adegoke Oluwadailare",
-      email: "adegoketemitope1909@gmail.com",
+      name: "Adee Oluwadailare",
+      email: "adeeoluewa1909@gmail.com",
       phone: "08160730668",
       address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
       id: 4,
       name: "Adegoke Oluwadailare",
-      email: "adegoketemitope1909@gmail.com",
+      email: "oluwaadegoke1909@gmail.com",
       phone: "08160730668",
       address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      id : 5,
+      id: 5,
       name: "Adegoke Oluwadailare",
       email: "adegoketemitope1909@gmail.com",
       phone: "08160730668",
       address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
     {
-      id : 6,
-      name: "Adegoke Oluwadailare",
-      email: "adegoketemitope1909@gmail.com",
+      id: 6,
+      name: "Ake Oluwadailare",
+      email: "aketemitope1909@gmail.com",
       phone: "08160730668",
       address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
     },
@@ -102,6 +110,15 @@ export default function Home() {
     }),
   ];
 
+  const filteredClientDatas = clientDatas?.filter((item) => {
+    const searchQuery = searchFilter.toLowerCase();
+    return (
+      item.name.toLowerCase().includes(searchQuery) ||
+      item.email.toLowerCase().includes(searchQuery) ||
+      item.phone.includes(searchFilter)
+    );
+  });
+  
   return (
     <>
       <AuthLayout>
@@ -110,11 +127,12 @@ export default function Home() {
           <p className="my-4">Here&apos;s the clients list</p>
 
           <div className="my-8 lg:flex items-center justify-between">
-          <div className="mb-2 md:p-2 md:w-full md:mb-0 md:pl-0">
+            <div className="mb-2 md:p-2 md:w-full md:mb-0 md:pl-0">
               <input
                 type="text"
                 placeholder="Search by name, email ...."
                 className="w-full border-2 border-gray-200 p-2 rounded-md"
+                onChange={handleSearchFilterChange}
               />
             </div>
             <div onClick={handleAddNewClient}>
@@ -125,9 +143,14 @@ export default function Home() {
             </div>
           </div>
           <TableMain
-            data={paymentTypes ? paymentTypes : []}
+            data={filteredClientDatas ? filteredClientDatas : []}
             columns={columns}
             tableClass=" font-medium text-small"
+            filters={{
+              name: searchFilter,
+              email: searchFilter,
+              phone: searchFilter,
+            }}
           />
         </main>
       </AuthLayout>
