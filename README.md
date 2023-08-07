@@ -1,7 +1,7 @@
 # Travel Manager Web Application
 
 Hello, 👋 \
-Travel Manager Web Application allows users to search for course of their choice and learn it within their vicinity. Travel Manager App for managing your travel plans.
+Travel Manager Web Application allows user to manage their travel plans.
 
 Here's some notes about my submission:
 
