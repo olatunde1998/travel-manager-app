@@ -7,9 +7,9 @@ interface ClientDetailsProps {
 export const ClientDetails = ({ title, content, focusContent }: ClientDetailsProps) => {
   return (
     <>
-      <main className="text-gray-500">
-        <p className="">{title} <span className="text-red-700">{focusContent}</span></p>
-        <p className="font-bold">{content}</p>
+      <main className="leading-8">
+        <p className="font-semibold text-gray-400">{title} <span className="text-red-700 font-normal">{focusContent}</span></p>
+        <p className="font-bold text-black">{content}</p>
       </main>
     </>
   );

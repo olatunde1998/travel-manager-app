@@ -13,7 +13,7 @@ export default function Home() {
       <AuthLayout>
         <main className="min-h-screen  text-gray-600  p-4 px-6 md:p-8">
           <HeaderCrumb prevLink="Your Workspace" nextLink="" />
-          <p className="my-4 text-gray-500 text-[12px] md:text-[18px]">Welcome, XXX</p>
+          <p className="my-4 text-gray-400 text-[12px] md:text-[18px]">Welcome, xxx</p>
           <div className="mt-16">
             <p className="font-bold mb-4">Overview</p>
             <div className="md:grid grid-cols-2 gap-4">

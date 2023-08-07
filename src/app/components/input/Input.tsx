@@ -3,7 +3,9 @@ interface InputProps {
   className?: string;
   name?: string;
   type?: string;
+  inputName?: string;
   focusContent?: string;
+  register?: any;
 }
 
 export const Input = ({
@@ -12,6 +14,8 @@ export const Input = ({
   type,
   className,
   focusContent,
+  inputName,
+  register,
 }: InputProps) => {
   return (
     <>
@@ -20,8 +24,9 @@ export const Input = ({
           {label} <span className="ml-1 text-red-700 font-normal text-[10px] hidden lg:block">{focusContent}</span>
         </label>
         <input
-          name={name}
+          name={inputName}
           type={type}
+          {...register}
           className={`border rounded focus:outline-none p-3 w-full`}
         />
       </div>

@@ -22,7 +22,7 @@ export default function Home() {
 
           <section className="bg-white pb-20 pt-10 px-4 md:px-6 mt-10 rounded-md">
             <div className="mt-10 rounded-md pl-4 md:pl-6 py-6 bg-gray-200/40">
-              <p className="font-semibold ml-2">Client Picture</p>
+              <p className="font-bold ml-2 text-black">Client&apos;s Picture</p>
               <div className="md:flex items-center  mt-6 max-w-[400px]">
                 <div className="relative mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mr-6">
                   <Image
@@ -32,13 +32,13 @@ export default function Home() {
                     alt="client picture"
                   />
                 </div>
-                <div className="space-y-2">
-                  <p className="font-bold ">Odusote Mayokun</p>
-                  <p className="text-gray-500 text-[14px] md:text-[16px]">
+                <div className="space-y-2 font-semibold">
+                  <p className="font-bold text-black ">Odusote Mayokun</p>
+                  <p className="text-gray-400  text-[14px] md:text-[16px]">
                     adegoketemitope1909@gmial.com
                   </p>
-                  <div className=" text-[14px] md:text-[16px] md:flex gap-4 text-gray-500">
-                    <p>female</p>
+                  <div className=" text-[14px] md:text-[16px] md:flex gap-4 text-gray-400">
+                    <p>Female</p>
                     <p>54years old</p> <p>Nigerian</p>
                   </div>
                 </div>

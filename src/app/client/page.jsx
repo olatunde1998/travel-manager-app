@@ -118,7 +118,7 @@ export default function Home() {
       item.phone.includes(searchFilter)
     );
   });
-  
+
   return (
     <>
       <AuthLayout>
@@ -127,13 +127,34 @@ export default function Home() {
           <p className="my-4">Here&apos;s the clients list</p>
 
           <div className="my-8 lg:flex items-center justify-between">
-            <div className="mb-2 md:p-2 md:w-full md:mb-0 md:pl-0">
-              <input
-                type="text"
-                placeholder="Search by name, email ...."
-                className="w-full border-2 border-gray-200 p-2 rounded-md"
-                onChange={handleSearchFilterChange}
-              />
+            <div className="mb-2 md:p-2 md:w-full md:mb-0 md:pl-0 lg:mr-6">
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg
+                    class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="search"
+                  id="default-search"
+                  class="block w-full p-4 pl-10 text-sm text-[#B2B6BA] border border-gray-300 rounded-lg bg-gray-50 focus:ring-[#DDAA33] focus:border-[#DDAA33] dark:bg-[#FBFBFB] dark:border-[#B2B6BA] dark:placeholder-gray-400 dark:text-[#B2B6BA] dark:focus:ring-[#DDAA33] dark:focus:border-[#DDAA33]"
+                  placeholder="Search name, email..."
+                  required
+                  onChange={handleSearchFilterChange}
+                />
+              </div>
             </div>
             <div onClick={handleAddNewClient}>
               <Button
