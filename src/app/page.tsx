@@ -46,12 +46,12 @@ export default function Home() {
   };
   return (
     <>
-      <div className="absolute top-0 left-0 w-full">
+      <div className="absolute top-[-60px] left-0 w-full">
         <LoginBackgroundImage/>
       </div>
 
       <main className="flex  px-2 flex-col items-center bg-white justify-between py-8 md:p-24 lg:justify-center xl:pt-52">
-        <div className="p-6 pb-10 bg-white w-full  md:w-[500px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] z-10">
+        <div className="p-6 pb-10 bg-white w-full  md:w-[500px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] z-10 ">
           <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className="flex items-center justify-between">
               <div className="">
