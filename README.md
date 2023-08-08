@@ -5,13 +5,13 @@ Travel Manager Web Application allows user to manage their travel plans.
 
 Here's some notes about my submission:
 
-1. A link to the project repository  [https://github.com/olatunde1998/travel-manager-app]
+1. A link to the project repository   https://github.com/olatunde1998/travel-manager-app
 
-2. A publicly live hosted URL of the challenge [https://travel-manager-app.vercel.app]
+2. A publicly live hosted URL of the challenge  https://travel-manager-app.vercel.app
 
 Thank you very much.
 
-Best regards
+Best regards\
 Rasheed Olatunde
 
 # Technologies 
