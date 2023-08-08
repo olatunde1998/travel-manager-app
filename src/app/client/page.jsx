@@ -75,8 +75,7 @@ export default function Home() {
   const columns = [
     columnHelper.accessor("name", {
       cell: (info) => (
-        <Link href="/client/client-profile" className="">
-          {" "}
+        <Link href={`/client/client-profile/${info.row.original.name}`}>
           <span className="pl-4">{info.renderValue()}</span>
         </Link>
       ),

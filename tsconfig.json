@@ -24,6 +24,6 @@
       "@components/*": ["./src/app/components/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/client/page.jsx", "src/app/payment/page.jsx", "src/app/components/input/Selector.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/client/page.jsx", "src/app/payment/page.jsx", "src/app/components/input/Selector.jsx", "src/app/client/client-profile/[id].jsx"],
   "exclude": ["node_modules"]
 }

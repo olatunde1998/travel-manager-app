@@ -8,11 +8,59 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+
+
+export  function Home(){
   const router = useRouter();
+  const { id } = router.query;
   const handleBack = () => {
     router.back();
   };
+
+  const clientProfileDatas = [
+    {
+      id: 1,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08133642798",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
+    },
+    {
+      id: 2,
+      name: "Ade Oluwadailare",
+      email: "temitopeade1909@gmail.com",
+      phone: "08117740042",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
+    },
+    {
+      id: 3,
+      name: "Adee Oluwadailare",
+      email: "adeeoluewa1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
+    },
+    {
+      id: 4,
+      name: "Adegoke Oluwadailare",
+      email: "oluwaadegoke1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
+    },
+    {
+      id: 5,
+      name: "Adegoke Oluwadailare",
+      email: "adegoketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
+    },
+    {
+      id: 6,
+      name: "Ake Oluwadailare",
+      email: "aketemitope1909@gmail.com",
+      phone: "08160730668",
+      address: "No 2, Olonade Close, Monato, Ibadan Oyo State, Nigeria",
+    },
+  ];
   return (
     <>
       <AuthLayout>
@@ -44,18 +92,18 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          
+            {/* client details */}
 
             <div className="ml-1 md:flex md:space-x-40 md:ml-4 my-20">
               <div className="space-y-6">
                 <ClientDetails
                   title="Full Name"
-                  content="Odusote Mayokun"
+                  content={clientProfileDatas.name}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Applicant Fullname"
-                  content="Odusote Mayokun Kemi"
+                  content={clientProfileDatas.name}
                   focusContent="(as shown in passport)"
                 />{" "}
                 <div className="flex gap-8">
