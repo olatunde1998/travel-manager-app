@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { SearchIcon } from "../../../assets/icons";
 
+
 export default function Home() {
   const [searchFilter, setSearchFilter] = useState("");
   const router = useRouter();
@@ -132,7 +133,7 @@ export default function Home() {
             <div className="mb-2 md:p-2 md:w-full md:mb-0 md:pl-0 lg:mr-6">
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <SearchIcon />
+                  <SearchIcon/>
                 </div>
                 <input
                   type="search"
