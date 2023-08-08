@@ -10,10 +10,13 @@ import { PiChatCircleDotsDuotone } from "react-icons/pi";
 import { TbReportAnalytics } from "react-icons/tb";
 import { FaTasks } from "react-icons/fa";
 import { RiDashboardLine } from "react-icons/ri";
+import { useState } from "react";
+import { BiSolidDownArrow } from "react-icons/bi";
 
 
 export const AuthSidebar = () => {
   const pathname = usePathname();
+   const [showReportsDropdown, setShowReportsDropdown] = useState(true); 
 
   const tabs = [
     {
@@ -64,22 +67,46 @@ export const AuthSidebar = () => {
         />
    
       </div>
-
       {tabs.map((tab) => (
-        <Link
-          key={tab.href}
-          href={tab.href}
-          className={`flex px-5 items-center gap-x-5  cursor-pointer p-5 
-          ${
-            pathname === tab.href
-              ? "border-l-4 border-yellow-500 text-yellow-500 "
-              : " bg-white "
-          }
-          `}
-        >
-          {tab.icon}
-          {tab.name}
-        </Link>
+        <div key={tab.href}>
+          {tab.name === "Reports" ? ( // Check if it's the "Reports" tab
+            <div
+              className={`flex px-5 items-center gap-x-5 cursor-pointer p-5 ${
+                showReportsDropdown ? "bg-white" : ""
+              }`}
+              onClick={() => setShowReportsDropdown(!showReportsDropdown)}
+            >
+              {tab.icon}
+              <span className="flex items-center">
+                {tab.name}
+                <BiSolidDownArrow size={12} className="text-gray-400 ml-8" />
+              </span>
+            </div>
+          ) : (
+            <Link
+              href={tab.href}
+              className={`flex px-5 items-center gap-x-5 cursor-pointer p-5 ${
+                pathname === tab.href
+                  ? "border-l-4 border-yellow-500 text-yellow-500"
+                  : "bg-white"
+              }`}
+            >
+              {tab.icon}
+              {tab.name}
+            </Link>
+          )}
+
+          {tab.name === "Reports" && showReportsDropdown && (
+            <div className="pl-14">
+              <Link href="/reports/activity-report" className="block p-3 ">
+                Activity Report
+              </Link>
+              <Link href="/reports/task-report" className="block p-3">
+                Task Report
+              </Link>
+            </div>
+          )}
+        </div>
       ))}
     </nav>
   );
