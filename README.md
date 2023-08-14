@@ -1,4 +1,8 @@
-# Travel Manager Web Application
+<div align="center">
+<h1>Travel Manager Web Application</h1>
+<h6><i>Enjoy your travel Schedule with the application</i></h6>
+<hr />
+</div>
 
 Hello, 👋 \
 Travel Manager Web Application allows user to manage their travel plans.
