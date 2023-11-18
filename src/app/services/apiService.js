@@ -20,7 +20,7 @@ const apiResource = (customHeaders = {}) => {
   const service = axios.create({
     baseURL: `${baseURL}`,
     withCredentials: false,
-    // headers: customHeaders ? fileHeaders: defaultHeaders,
+    headers: customHeaders ? fileHeaders: defaultHeaders,
   });
 
 
