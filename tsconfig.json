@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,10 +24,27 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/app/components/*"],
+      "@/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/client/page.jsx", "src/app/payment/page.jsx", "src/app/components/input/Selector.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/client/page.jsx",
+    "src/app/payment/page.jsx",
+    "src/app/components/input/Selector.jsx",
+    "src/app/client/[_id]/page.jsx",
+    "src/app/testing/page.jsx",
+    "build/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -33,7 +33,7 @@ export default function Home() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const successNotifying = () => {
-    toast("Login Successful", { position: toast.POSITION.TOP_RIGHT });
+    toast.success("Login Successful", { position: toast.POSITION.TOP_RIGHT, autoClose: 1000 });
   };
 
   const onSubmitHandler = () => {
