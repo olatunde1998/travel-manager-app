@@ -5,10 +5,11 @@ interface ButtonProps {
   btnIcon?: any;
 }
 
-export const Button = ({ btnText, className, handleBtnClick }: ButtonProps) => {
+export const Button = ({ btnText, className, handleBtnClick,  }: ButtonProps) => {
   return (
     <>
       <button
+        type="submit"
         onClick={handleBtnClick}
         className={`${className} p-3 w-[200px] rounded-md text-center cursor-pointer flex items-center justify-center`}
       >

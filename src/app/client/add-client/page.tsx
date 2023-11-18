@@ -9,20 +9,198 @@ import {
 } from "@/app/components";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { CreateClientApi } from "@/app/services";
+import { useState } from "react";
+
+const schema = yup.object().shape({
+  firstName: yup.string().required("First Name is required"),
+  lastName: yup.string().required("Last Name is required"),
+  fullName: yup
+    .string()
+    .required("Full Name is required")
+    .min(3, "Full Name must be greater than 7 letters"),
+  email: yup
+    .string()
+    .required("Email is required")
+    .email(" Invalid Email format"),
+  placeOfBirth: yup
+    .string()
+    .required("Place Of Birth is required")
+    .min(3, "Place Of Birth must be greater than 3 letters"),
+  dateOfBirth: yup.string().required("Date Of Birth is required"),
+  phoneNumber: yup
+    .string()
+    .required("Phone number is required")
+    .min(6, "Phone number must be greater than 6 numbers")
+    .max(12, "Phone number must be less than 12 numbers"),
+  mailingAddress: yup
+    .string()
+    .required("Mailing Address is required")
+    .min(12, "Mailing Address must be greater than 12 letters"),
+  residentialAddress: yup
+    .string()
+    .required("Residential Address is required")
+    .min(12, "Residential Address must be greater than 12 letters"),
+  maritalStatus: yup
+    .string()
+    .required("Marital Status is required")
+    .min(4, "Marital Status must be greater than 4 letters"),
+  occupation: yup
+    .string()
+    .required("Occupation is required")
+    .min(4, "Occupation must be greater than 4 letters"),
+  purposeOfTraveling: yup
+    .string()
+    .required("Purpose Of Traveling is required")
+    .min(7, "Purpose of traveling must be greater than 7 letters"),
+});
+
+const successNotifying = () => {
+  toast.success("Client Created Successfully", {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
+const errorNotifying = () => {
+  toast.error("Client creating  failed", {
+    position: toast.POSITION.TOP_RIGHT,
+    autoClose: 2000,
+  });
+};
 
 export default function Home() {
-  const genderData =["Male", "Female"]
-  const educationData = ["Primary", "Secondary", "Tertiary", "Masters", "PhD"]
-  const countryData = ["Nigeria", "Ghana", "South Africa", "Kenya", "Togo", "Benin"]
+  const [getSelectedGender, setGetSelectedGender] = useState();
+  const [getSelectedCountry, setGetSelectedCountry] = useState();
+  const [getSelectedCountryOfInterest, setGetSelectedCountryOfInterest] =
+    useState();
+  const [getSelectedEducation, setGetSelectedEducation] = useState();
+  const queryClient = useQueryClient();
+
+  const navigateToClientHome = () => {
+    router.push("/client");
+  };
+
+  const { isLoading, mutate } = useMutation(CreateClientApi, {
+    onError: (error) => {
+      errorNotifying();
+      console.log(error);
+    },
+    onSuccess: async (data) => {
+      const response = data;
+      successNotifying();
+      navigateToClientHome();
+      await queryClient.invalidateQueries(["getClientsApi"]);
+    },
+    retry: 0,
+  });
+
+  const genderData = [
+    {
+      id: 1,
+      name: "Male",
+    },
+    {
+      id: 2,
+      name: "Female",
+    },
+  ];
+  const educationData = [
+    {
+      id: 1,
+      name: "Primary",
+    },
+    {
+      id: 2,
+      name: "Secondary",
+    },
+    {
+      id: 3,
+      name: "Tertiary",
+    },
+    {
+      id: 4,
+      name: "Masters",
+    },
+    {
+      id: 5,
+      name: "PhD",
+    },
+  ];
+  const countryData = [
+    {
+      id: 1,
+      name: "Nigeria",
+    },
+    {
+      id: 2,
+      name: "Ghana",
+    },
+    {
+      id: 3,
+      name: "South Africa",
+    },
+    {
+      id: 4,
+      name: "Kenya",
+    },
+    {
+      id: 5,
+      name: "Togo",
+    },
+    {
+      id: 6,
+      name: "Benin",
+    },
+  ];
   const router = useRouter();
-  const handleCancelBtn = () => {
-    router.push("/client");
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    setValue,
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const handleSelectGender = (item: any) => {
+    setGetSelectedGender(item?.name);
   };
-  const handleSaveBtn = () => {
-    router.push("/client");
+  const handleSelectCountry = (item: any) => {
+    setGetSelectedCountry(item?.name);
   };
-  const handleSelect = (value: any) => {
-    console.log(value);
+  const handleSelectCountryOfInterest = (item: any) => {
+    setGetSelectedCountryOfInterest(item?.name);
+  };
+  const handleSelectEducation = (item: any) => {
+    setGetSelectedEducation(item?.name);
+  };
+
+  const onSubmitHandler = (data: any) => {
+    const requestData = {
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+      fullName: data?.fullName,
+      email: data?.email,
+      gender: getSelectedGender,
+      placeOfBirth: data?.placeOfBirth,
+      dateOfBirth: data?.dateOfBirth,
+      countryOfCitizen: getSelectedCountry,
+      maritalStatus: data?.maritalStatus,
+      education: getSelectedEducation,
+      occupation: data?.occupation,
+      phoneNumber: data?.phoneNumber,
+      residentialAddress: data?.residentialAddress,
+      mailingAddress: data?.mailingAddress,
+      countryOfInterest: getSelectedCountryOfInterest,
+      purposeOfTraveling: data?.purposeOfTraveling,
+      imageUrl: data?.imageUrl,
+    };
+    mutate(requestData);
   };
   return (
     <>
@@ -32,109 +210,276 @@ export default function Home() {
           <p className="my-2 text-gray-500">Add a new Client here</p>
 
           <section className="bg-white pb-10 pt-10 px-3 mt-10 rounded-md md:px-6">
-            <div className="mt-10 rounded-md md:pl-6 py-6 bg-gray-200/40">
-              <p className="font-bold ml-0 text-center md:ml-3 md:text-left">
-                Client&apos;s Picture
-              </p>
-              <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
-              <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mb-0 md:mr-6">
-                  <Image
-                    src="/images/clientImg.png"
-                    width={100}
-                    height={100}
-                    className="w-full h-full"
-                    alt="client picture"
-                  />
-                </div>
-                <div className="space-y-2 flex flex-col justify-center items-center">
-                  <Button
-                    btnText="Upload"
-                    className="bg-[#DDAA33] rounded-xl justify-center flex text-white cursor-pointer"
-                  />
-                  <Button
-                    btnText="Use Webcam"
-                    className="justify-center flex rounded-xl border-[1.6px] border-red-700 text-red-700"
-                  />
-                </div>
-              </div>
-            </div>
-            {/* client details */}
-            <div className="block space-y-4  my-20 md:flex md:space-x-4 md:space-y-0 lg:space-x-10">
-              <div className="w-full space-y-6 md:w-1/2">
-                <Input type="text" label="Full Name" />
-                <Input
-                  type="text"
-                  label="Applicant Fullname"
-                  focusContent="(as shown in passport)"
-                />
-                <div className="space-y-4 md:flex md:justify-between gap-2 md:space-y-0">
-                  <div className="w-full md:w-1/2">
-                    <Input type="text" label="Place of Birth" />
+            <form onSubmit={handleSubmit(onSubmitHandler)}>
+              <div className="mt-10 rounded-md md:pl-6 py-6 bg-gray-200/40">
+                <p className="font-bold ml-0 text-center md:ml-3 md:text-left">
+                  Client&apos;s Picture
+                </p>
+                <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
+                  <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mb-0 md:mr-6">
+                    <Image
+                      src="/images/clientImg.png"
+                      width={100}
+                      height={100}
+                      className="w-full h-full"
+                      alt="client picture"
+                    />
                   </div>
-                  <div className="w-full md:w-1/2">
-                    <Input type="date" label="Date of Birth" />
+                  <div className="space-y-2 flex flex-col justify-center items-center">
+                    <Button
+                      btnText="Upload"
+                      className="bg-[#DDAA33] rounded-xl justify-center flex text-white cursor-pointer"
+                    />
+                    <Button
+                      btnText="Use Webcam"
+                      className="justify-center flex rounded-xl border-[1.6px] border-red-700 text-red-700"
+                    />
                   </div>
                 </div>
-                <Input type="text" label="Marital Status" />
-                <Input type="text" label="Current Occupation" />
-                <TextArea rows="6" label="Residental Address" />
-                {/* <Input type="text" label="Country of Interest" /> */}
-                <Selector
-                  label="Country of Interest"
-                  focusContent=""
-                  placeholder="Draft"
-                  onSelect={handleSelect}
-                  selectOption=""
-                  inputData={countryData}
-                />
               </div>
+              {/* client details */}
+              <div className="block space-y-4  my-20 md:flex md:space-x-4 md:space-y-0 lg:space-x-10">
+                <div className="w-full space-y-6 md:w-1/2">
+                  <div>
+                    <Input
+                      type="text"
+                      inputName="firstName"
+                      label="First Name"
+                      register={{ ...register("firstName") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.firstName?.message}
+                    </p>
+                  </div>
+                  <div>
+                    <Input
+                      type="text"
+                      inputName="fullName"
+                      label="Applicant Full Name"
+                      focusContent="(as shown in passport)"
+                      register={{ ...register("fullName") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.fullName?.message}
+                    </p>
+                  </div>
 
-              <div className="w-full space-y-6 md:w-1/2">
-                <Input type="email" label="Email" />
-                <Selector
-                  label="Gender"
-                  focusContent=""
-                  placeholder="search"
-                  onSelect={handleSelect}
-                  inputData={genderData}
-                  selectOption=""
-                />
-                <Selector
-                  label="Country of Citizenship"
-                  focusContent=""
-                  placeholder="search"
-                  onSelect={handleSelect}
-                  selectOption=""
-                  inputData={countryData}
-                />
-                <Selector
-                  label="Education"
-                  focusContent="(Client's highest level of Education)"
-                  placeholder="search"
-                  onSelect={handleSelect}
-                  selectOption=""
-                  inputData={educationData}
-                />
-                <Input type="number" label="Phone Number" />
-                <TextArea rows="6" label="Mailing Address"  />
-                <Input type="text" label="Purpose of Travaling" />
+                  <div className="space-y-4 md:flex md:justify-between gap-2 md:space-y-0">
+                    <div className="w-full md:w-1/2">
+                      <Input
+                        type="text"
+                        inputName="placeOfBirth"
+                        label="Place of Birth"
+                        register={{ ...register("placeOfBirth") }}
+                      />
+                      <p className="text-red-500 text-[0.55rem] text-left">
+                        {errors.placeOfBirth?.message}
+                      </p>
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <Input
+                        type="date"
+                        inputName="dateOfBirth"
+                        label="Date of Birth"
+                        register={{ ...register("dateOfBirth") }}
+                      />
+                      <p className="text-red-500 text-[0.55rem] text-left">
+                        {errors.dateOfBirth?.message}
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <Input
+                      type="text"
+                      inputName="maritalStatus"
+                      label="Marital Status"
+                      register={{ ...register("maritalStatus") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.maritalStatus?.message}
+                    </p>
+                  </div>
+                  <div>
+                    <Input
+                      type="text"
+                      inputName="occupation"
+                      label="Current Occupation"
+                      register={{ ...register("occupation") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.occupation?.message}
+                    </p>
+                  </div>
+                  <div>
+                    <TextArea
+                      rows="6"
+                      inputName="residentialAddress"
+                      label="Residential Address"
+                      register={{ ...register("residentialAddress") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.residentialAddress?.message}
+                    </p>
+                  </div>
+
+                  <div>
+                    <Selector
+                      label="Country of Interest"
+                      focusContent=""
+                      placeholder="Draft"
+                      onSelect={handleSelectCountryOfInterest}
+                      selectOption=""
+                      inputData={countryData}
+                    />
+                    <p
+                      className={`${
+                        getSelectedCountryOfInterest !== null
+                          ? "hidden"
+                          : "text-red-500"
+                      } "text-red-500 text-[0.55rem] text-left"`}
+                    >
+                      Country Of Interest is required
+                    </p>
+                  </div>
+
+                  <div>
+                    <Input
+                      type="text"
+                      inputName="purposeOfTraveling"
+                      label="Purpose of Traveling"
+                      register={{ ...register("purposeOfTraveling") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.purposeOfTraveling?.message}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="w-full space-y-6 md:w-1/2">
+                  <div>
+                    <Input
+                      type="text"
+                      inputName="lastName"
+                      label="Last Name"
+                      register={{ ...register("lastName") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.lastName?.message}
+                    </p>
+                  </div>
+                  <div>
+                    <Input
+                      type="email"
+                      label="Email"
+                      inputName="email"
+                      register={{ ...register("email") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors.email?.message}
+                    </p>
+                  </div>
+
+                  <div>
+                    <Selector
+                      label="Gender"
+                      // name="gender"
+                      focusContent=""
+                      placeholder="search"
+                      onSelect={handleSelectGender}
+                      inputData={genderData}
+                      selectOption=""
+                    />
+                    <p
+                      className={`${
+                        getSelectedGender !== null ? "hidden" : "text-red-500"
+                      } "text-red-500 text-[0.55rem] text-left"`}
+                    >
+                      Gender is required
+                    </p>
+                  </div>
+
+                  <div className="pt-[6px]">
+                    <Selector
+                      label="Country of Citizenship"
+                      focusContent=""
+                      placeholder="search"
+                      onSelect={handleSelectCountry}
+                      selectOption=""
+                      inputData={countryData}
+                    />
+                    <p
+                      className={`${
+                        getSelectedCountry !== null ? "hidden" : "text-red-500"
+                      } "text-red-500 text-[0.55rem] text-left"`}
+                    >
+                      country of Citizen is required
+                    </p>
+                  </div>
+
+                  <div>
+                    <Selector
+                      label="Education"
+                      focusContent="(Client's highest level of Education)"
+                      placeholder="search"
+                      onSelect={handleSelectEducation}
+                      selectOption=""
+                      inputData={educationData}
+                    />
+                    <p
+                      className={`${
+                        getSelectedEducation !== null
+                          ? "hidden"
+                          : "text-red-500"
+                      } "text-red-500 text-[0.55rem] text-left"`}
+                    >
+                      Education is required
+                    </p>
+                  </div>
+
+                  <div>
+                    <TextArea
+                      rows="6"
+                      inputName="mailingAddress"
+                      label="Mailing Address"
+                      register={{ ...register("mailingAddress") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors?.mailingAddress?.message}
+                    </p>
+                  </div>
+
+                  <div>
+                    <Input
+                      type="number"
+                      inputName="phoneNumber"
+                      label="Phone Number"
+                      register={{ ...register("phoneNumber") }}
+                    />
+                    <p className="text-red-500 text-[0.55rem] text-left">
+                      {errors?.phoneNumber?.message}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="flex justify-between pr-0 lg:justify-end  gap-6">
-              <Button
-                handleBtnClick={handleCancelBtn}
-                btnText="Cancel"
-                className="cursor-pointer justify-center flex rounded-md border-[1.6px] border-red-700 text-red-700"
-              />
-              <Button
-                btnText="Save"
-                handleBtnClick={handleSaveBtn}
-                className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
-              />
-            </div>
+              <div className="flex justify-between pr-0 lg:justify-end  gap-6">
+                <div
+                  onClick={() => {
+                    router.back();
+                  }}
+                  className="cursor-pointer justify-center flex rounded-md border-[1.6px] border-red-700 text-red-700 p-3 w-[200px] text-center  items-center"
+                >
+                  Cancel
+                </div>
+                <Button
+                  btnText="Save"
+                  className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
+                />
+              </div>
+            </form>
           </section>
         </main>
       </AuthLayout>
+      <ToastContainer />
     </>
   );
 }

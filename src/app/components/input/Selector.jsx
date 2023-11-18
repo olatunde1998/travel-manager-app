@@ -14,14 +14,14 @@ export const Selector = ({
   const [open, setOpen] = useState(false);
 
   const handleSelect = (item) => {
-    if (item.toLowerCase() !== selected.toLowerCase()) {
-      setSelected(item);
+    if (item.name.toLowerCase() !== selected.toLowerCase()) {
+      setSelected(item.name);
       setOpen(false);
       setInputValue("");
       onSelect ? onSelect(item) : null;
     }
   };
-  
+
   return (
     <div className="text-sm space-y-3">
       <p className="font-semibold flex">
@@ -42,7 +42,10 @@ export const Selector = ({
               ? selected?.substring(0, 25) + "..."
               : selected
             : "Select an option"}
-          <BiSolidDownArrow size={12} className={` text-gray-400 ${open && "rotate-180"}`} />
+          <BiSolidDownArrow
+            size={12}
+            className={` text-gray-400 ${open && "rotate-180"}`}
+          />
         </div>
 
         <ul
@@ -50,17 +53,24 @@ export const Selector = ({
             open ? "max-h-60" : "max-h-0"
           } absolute top-full w-full z-50`}
         >
-          {inputData?.map((item, idx) => (
-            <li
-              key={idx}
-              className={`p-2 pl-4 pt-3 text-sm hover:bg-[#FBF6EB] hover:text-black
-            ${item?.toLowerCase() === selected?.toLowerCase() && ""}
-            ${item?.toLowerCase().startsWith(inputValue) ? "block" : "hidden"}`}
-              onClick={() => handleSelect(item)}
-            >
-              {item}
-            </li>
-          ))}
+          {inputData?.map((item) => (
+          <li
+            key={item?.name}
+            className={`p-4 text-sm hover:bg-[#FBF6EB] cursor-pointer hover:text-black
+            ${
+              item?.name?.toLowerCase() === selected?.toLowerCase() &&
+              ""
+            }
+            ${
+              item?.name?.toLowerCase().startsWith(inputValue)
+                ? "block"
+                : "hidden"
+            }`}
+            onClick={() => handleSelect(item)}
+          >
+            {item?.name}
+          </li>
+        ))}
         </ul>
       </div>
     </div>

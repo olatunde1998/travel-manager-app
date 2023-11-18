@@ -22,8 +22,6 @@ export default function Home() {
     queryFn: getClientsApi,
   });
 
-  console.log(clientsData, "========");
-
   const handleAddNewClient = () => {
     router.push("/client/add-client");
   };

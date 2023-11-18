@@ -32,9 +32,8 @@ const apiResource = (customHeaders = {}) => {
 
     post: async ({ url, payload }) => {
       try {
-        const data = service.post(url, payload);
-        const resolvedData = await Promise.resolve(data);
-        return resolvedData;
+        const response = await service.post(url, payload);
+        return response.data;
       } catch (error) {
         return Promise.reject(error);
       }
