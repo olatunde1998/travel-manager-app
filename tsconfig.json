@@ -43,7 +43,7 @@
     "src/app/client/[_id]/page.jsx",
     "src/app/testing/page.jsx",
     "build/types/**/*.ts"
-  ],
+, "src/app/client/add-client/page.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -5,7 +5,7 @@ import {apiService} from "../index"
 export const CreateClientApi = async (data) => {
   const payload = { ...data };
   const response = await apiService.post({
-    url: "/api/clients",
+    url: `/api/clients`,
     payload,
   });
   return response;

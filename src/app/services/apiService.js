@@ -7,15 +7,11 @@ const apiResource = (customHeaders = {}) => {
   const defaultHeaders = {
     Accept: "application/json",
     "Content-Type": "application/json",
-    // "Access-Control-Allow-Methods": "*",
-    // "Access-Control-Allow-Origin": `${baseURL}/`,
   };
 
   const fileHeaders = {
     ...customHeaders,
-    // "Access-Control-Allow-Methods": "*",
-    // "Access-Control-Allow-Origin": `${baseURL}/`,
-  };
+  };  
 
   const service = axios.create({
     baseURL: `${baseURL}`,
@@ -25,16 +21,6 @@ const apiResource = (customHeaders = {}) => {
 
 
   return {
-    // get: async (url) => {
-    //   try {
-    //     const data = service.get(url);
-    //     const resolvedData = await Promise.resolve(data);
-    //     const exactData = resolvedData?.data;
-    //     return exactData;
-    //   } catch (error) {
-    //     return Promise.reject(error);
-    //   }
-    // },
     get: async (url) => {
       try {
         const response = await service.get(url);
@@ -46,9 +32,8 @@ const apiResource = (customHeaders = {}) => {
 
     post: async ({ url, payload }) => {
       try {
-        const data = service.post(url, payload);
-        const resolvedData = await Promise.resolve(data);
-        return resolvedData;
+        const response = await service.post(url, payload);
+        return response.data;
       } catch (error) {
         return Promise.reject(error);
       }

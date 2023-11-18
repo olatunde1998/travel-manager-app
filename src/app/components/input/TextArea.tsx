@@ -5,6 +5,7 @@ interface TextAreaProps {
   focusContent?: string;
   rows?: any;
   register?: any;
+  inputName?: string,
 }
 
 export const TextArea = ({
@@ -13,7 +14,8 @@ export const TextArea = ({
   className,
   focusContent,
   rows,
-  register
+  register,
+  inputName
 }: TextAreaProps) => {
   return (
     <>
@@ -23,7 +25,7 @@ export const TextArea = ({
         </label>
         <textarea
           className="border rounded focus:outline-none p-3 w-full"
-          name=""
+          name={inputName}
           rows={rows}
           {...register}
         ></textarea>
