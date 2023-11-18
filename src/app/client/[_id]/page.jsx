@@ -5,14 +5,20 @@ import {
   ClientDetails,
   HeaderCrumb,
 } from "@/app/components";
+import { getClientDetailsApi } from "@/app/services";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function ClientProfile({ params }) {
   const router = useRouter();
-  const handleBack = () => {
-    router.back();
-  };
+  const clientID = params?._id;
+
+  const { data: clientDetails, isLoading } = useQuery({
+    queryKey: ["getClientsApi", clientID],
+    queryFn: () => (clientID ? getClientDetailsApi(clientID) : null),
+  });
+
   return (
     <>
       <AuthLayout>
@@ -21,73 +27,87 @@ export default function Home() {
           <p className="my-2 text-gray-500">View Client Profile here</p>
 
           <section className="bg-white pb-20 pt-10 px-4 md:px-6 mt-10 rounded-md">
-            <div className="mt-10 rounded-md pl-4 md:pl-6 py-6 bg-gray-200/40">
-              <p className="font-bold ml-2 text-black">Client&apos;s Picture</p>
-              <div className="md:flex items-center  mt-6 max-w-[400px]">
-                <div className="relative mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mr-6">
-                  <Image
-                    src="/images/clientImg.png"
-                    fill
-                    className="w-full"
-                    alt="client picture"
-                  />
-                </div>
-                <div className="space-y-2 font-semibold">
-                  <p className="font-bold text-black ">Odusote Mayokun</p>
-                  <p className="text-gray-400  text-[14px] md:text-[16px]">
-                    adegoketemitope1909@gmial.com
-                  </p>
-                  <div className=" text-[14px] md:text-[16px] md:flex gap-4 text-gray-400">
-                    <p>Female</p>
-                    <p>54years old</p> <p>Nigerian</p>
+            <div className="mt-10 rounded-md pl-4 md:pl-6 py-6 bg-gray-200/40 md:flex items-center justify-between">
+              <div>
+                <p className="font-bold ml-2 text-black">
+                  Client&apos;s Picture
+                </p>
+                <div className="md:flex items-center  mt-6 max-w-[400px]">
+                  <div className="mr-0 w-[100px] h-[100px]  md:mr-6 rounded-full">
+                    <Image
+                      src={clientDetails?.imageUrl}
+                      width={100}
+                      height={100}
+                      className="rounded-full h-[100px] w-[100px]"
+                      alt="client picture"
+                    />
+                  </div>
+                  <div className="space-y-2 font-semibold">
+                    <p className="font-bold text-black ">
+                      {clientDetails?.firstName} {clientDetails?.lastName}
+                    </p>
+                    <p className="text-gray-400  text-[14px] md:text-[16px]">
+                      {clientDetails?.email}
+                    </p>
+                    <div className=" text-[14px] md:text-[16px] md:flex gap-4 text-gray-400">
+                      <p>{clientDetails?.gender}</p>
+                      <p>{clientDetails?.dateOfBirth}</p>{" "}
+                      <p>{clientDetails?.countryOfCitizen}</p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className="justify-center md:justify-end flex pr-10 pt-6 md:pt-20">
+                <Button
+                  btnText="Edit"
+                  className="bg-[#DDAA33] text-white justify-center flex p-1 w-[100px] h-[50px]"
+                />
+              </div>
             </div>
-          
+            {/* client details */}
 
             <div className="ml-1 md:flex md:space-x-40 md:ml-4 my-20">
               <div className="space-y-6">
                 <ClientDetails
                   title="Full Name"
-                  content="Odusote Mayokun"
+                  content={`${clientDetails?.firstName} ${clientDetails?.lastName}`}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Applicant Fullname"
-                  content="Odusote Mayokun Kemi"
+                  content={clientDetails?.fullName}
                   focusContent="(as shown in passport)"
                 />{" "}
                 <div className="flex gap-8">
                   <ClientDetails
                     title="Place of Birth"
-                    content="Nigeria"
+                    content={clientDetails?.placeOfBirth}
                     focusContent=""
                   />{" "}
                   <ClientDetails
                     title="Date of Birth"
-                    content="04/11/2012"
+                    content={clientDetails?.dateOfBirth}
                     focusContent=""
                   />{" "}
                 </div>
                 <ClientDetails
                   title="Marital Status"
-                  content="Married"
+                  content={clientDetails?.maritalStatus}
                   focusContent=""
                 />{" "}
                 <ClientDetails
                   title="Current Occupation"
-                  content="Engineer"
+                  content={clientDetails?.occupation}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Residental Address"
-                  content="No 2, Oloro Street Bank Olodo, Ibadan, Oyo State, Nigeria"
+                  content={clientDetails?.residentialAddress}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Country of Interest"
-                  content="Iceland"
+                  content={clientDetails?.countryOfInterest}
                   focusContent=""
                 />
               </div>
@@ -95,37 +115,37 @@ export default function Home() {
               <div className="mt-6 space-y-6 md:mt-0">
                 <ClientDetails
                   title="Email"
-                  content="adegoketemitope1909@abc.om"
+                  content={clientDetails?.email}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Gender"
-                  content="Female"
+                  content={clientDetails?.gender}
                   focusContent=""
                 />{" "}
                 <ClientDetails
                   title="Country of Citizenship"
-                  content="Nigeria, Uganda"
+                  content={clientDetails?.countryOfCitizen}
                   focusContent=""
                 />{" "}
                 <ClientDetails
                   title="Education"
-                  content="Bachelor's Degree"
+                  content={clientDetails?.education}
                   focusContent="(Client's highest level of Education)"
                 />{" "}
                 <ClientDetails
                   title="Phone Number"
-                  content="+234(0)8160730668"
+                  content={clientDetails?.phoneNumber}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Mailing Address"
-                  content="No 2, Oloro Street Bank Olodo, Ibadan, Oyo State, Nigeria"
+                  content={clientDetails?.mailingAddress}
                   focusContent=""
                 />
                 <ClientDetails
                   title="Purpose of Travaling"
-                  content="Trading"
+                  content={clientDetails?.purposeOfTraveling}
                   focusContent=""
                 />
               </div>
@@ -134,7 +154,9 @@ export default function Home() {
               <Button
                 btnText="Back"
                 className="bg-[#DDAA33] text-white justify-center flex"
-                handleBtnClick={handleBack}
+                handleBtnClick={() => {
+                  router.back();
+                }}
               />
             </div>
           </section>
