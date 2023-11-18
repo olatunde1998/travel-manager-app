@@ -1,5 +1,5 @@
 import axios from "axios";
-import { showToast, _getToken, _clearData } from "../../../utils";
+
 
 const apiResource = (customHeaders = {}) => {
   const baseURL = process.env.NEXT_PUBLIC_BASEURL;
