@@ -25,7 +25,7 @@ export default function RootLayout({
       </head>
       <QueryClientProvider client={queryClient}>
         <body className={inter.className}>{children}</body>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </html>
   );

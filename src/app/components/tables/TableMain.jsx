@@ -6,9 +6,15 @@ import {
   getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import { Spinner } from "../spinner/spinner";
 
-
-export const TableMain = ({ data, columns = [], tableClass, filters }) => {
+export const TableMain = ({
+  data,
+  columns = [],
+  tableClass,
+  filters,
+  isLoading,
+}) => {
   const table = useReactTable({
     data,
     columns,
@@ -47,22 +53,33 @@ export const TableMain = ({ data, columns = [], tableClass, filters }) => {
               </tr>
             ))}
           </thead>
-          <tbody>
-            {/* Mapping throught the table body */}
-            {table.getRowModel().rows.map((row, index) => (
-              <tr
-                key={index}
-                className="cursor-pointer border-x-none text-sm border-b-[1px] border-gray-100 hover:bg-[#FBF6EB]  bg-white hover:border-l-[2px] hover:border-[#DDAA33] hover:border-b-0  whitespace-nowrap"
-                
-              >
-                {row.getVisibleCells().map((cell, key) => (
-                  <td key={key} className="py-1">
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
+
+          {isLoading ? (
+            <td colSpan={columns.length}>
+              <div className=" w-[100px] h-[100px] md:w-[250px] md:h-[250px] mx-auto mt-28">
+                <Spinner />
+              </div>
+            </td>
+          ) : (
+            <tbody>
+              {/* Mapping throught the table body */}
+              {table.getRowModel().rows.map((row, index) => (
+                <tr
+                  key={index}
+                  className="cursor-pointer border-x-none text-sm border-b-[1px] border-gray-100 hover:bg-[#FBF6EB]  bg-white hover:border-l-[2px] hover:border-[#DDAA33] hover:border-b-0  whitespace-nowrap"
+                >
+                  {row.getVisibleCells().map((cell, key) => (
+                    <td key={key} className="py-1">
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

@@ -155,6 +155,7 @@ export default function Home() {
             filters={{
               email: searchFilter,
             }}
+            isLoading = {isLoading}
           />
         </main>
       </AuthLayout>
