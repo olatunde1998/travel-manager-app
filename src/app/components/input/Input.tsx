@@ -6,6 +6,8 @@ interface InputProps {
   inputName?: string;
   focusContent?: string;
   register?: any;
+  editInput?: string;
+  readOnly?: boolean;
 }
 
 export const Input = ({
@@ -16,6 +18,8 @@ export const Input = ({
   focusContent,
   inputName,
   register,
+  editInput,
+  readOnly
 }: InputProps) => {
   return (
     <>
@@ -26,8 +30,9 @@ export const Input = ({
         <input
           name={inputName}
           type={type}
+          readOnly={readOnly}
           {...register}
-          className={`border rounded focus:outline-none p-3 w-full`}
+          className={`border ${editInput} rounded focus:outline-none p-3 w-full`}
         />
       </div>
     </>

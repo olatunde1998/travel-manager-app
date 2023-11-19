@@ -55,11 +55,15 @@ export const TableMain = ({
           </thead>
 
           {isLoading ? (
-            <td colSpan={columns.length}>
-              <div className=" w-[100px] h-[100px] md:w-[250px] md:h-[250px] mx-auto mt-28">
-                <Spinner />
-              </div>
-            </td>
+            <tbody>
+              <tr>
+                <td colSpan={columns.length}>
+                  <div className="w-[100px] h-[100px] md:w-[250px] md:h-[250px] mx-auto mt-28">
+                    <Spinner />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           ) : (
             <tbody>
               {/* Mapping throught the table body */}

@@ -11,6 +11,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getClientsApi } from "../services";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Home() {
@@ -159,6 +161,7 @@ export default function Home() {
           />
         </main>
       </AuthLayout>
+      <ToastContainer />
     </>
   );
 }
