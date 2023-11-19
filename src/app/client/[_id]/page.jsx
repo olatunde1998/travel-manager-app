@@ -4,18 +4,27 @@ import {
   Button,
   ClientDetails,
   HeaderCrumb,
+  Modal,
 } from "@/app/components";
+import { DeleteClient } from "@/app/components/client/delete-client";
+import { EditClient } from "@/app/components/client/edit-client";
 import { getClientDetailsApi } from "@/app/services";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ClientProfile({ params }) {
+  const [showEditClient, setShowEditClient] = useState(false);
+  const [showDeleteClient, setShowDeleteClient] = useState(false);
+
   const router = useRouter();
   const clientID = params?._id;
 
   const { data: clientDetails, isLoading } = useQuery({
-    queryKey: ["getClientsApi", clientID],
+    queryKey: ["getClientDetailsApi", clientID],
     queryFn: () => (clientID ? getClientDetailsApi(clientID) : null),
   });
 
@@ -33,15 +42,27 @@ export default function ClientProfile({ params }) {
                   Client&apos;s Picture
                 </p>
                 <div className="md:flex items-center  mt-6 max-w-[400px]">
-                  <div className="mr-0 w-[100px] h-[100px]  md:mr-6 rounded-full">
-                    <Image
-                      src={clientDetails?.imageUrl}
-                      width={100}
-                      height={100}
-                      className="rounded-full h-[100px] w-[100px]"
-                      alt="client picture"
-                    />
-                  </div>
+                  {clientDetails?.imageUrl ? (
+                    <div className="mr-0 w-[100px] h-[100px]  md:mr-6 rounded-full">
+                      <Image
+                        src={clientDetails?.imageUrl}
+                        width={100}
+                        height={100}
+                        className="rounded-full h-[100px] w-[100px]"
+                        alt="client picture"
+                      />
+                    </div>
+                  ) : (
+                    <div className="mr-0 w-[100px] h-[100px]  md:mr-6 rounded-full">
+                      <Image
+                        src="/images/clientImg.png"
+                        width={100}
+                        height={100}
+                        className="rounded-full h-[100px] w-[100px]"
+                        alt="client picture"
+                      />
+                    </div>
+                  )}
                   <div className="space-y-2 font-semibold">
                     <p className="font-bold text-black ">
                       {clientDetails?.firstName} {clientDetails?.lastName}
@@ -57,15 +78,19 @@ export default function ClientProfile({ params }) {
                   </div>
                 </div>
               </div>
+              {/* edit button */}
               <div className="justify-center md:justify-end flex pr-10 pt-6 md:pt-20">
                 <Button
                   btnText="Edit"
+                  handleBtnClick={() => {
+                    setShowEditClient(true);
+                  }}
                   className="bg-[#DDAA33] text-white justify-center flex p-1 w-[100px] h-[50px]"
                 />
               </div>
             </div>
-            {/* client details */}
 
+            {/* client details */}
             <div className="ml-1 md:flex md:space-x-40 md:ml-4 my-20">
               <div className="space-y-6">
                 <ClientDetails
@@ -74,7 +99,7 @@ export default function ClientProfile({ params }) {
                   focusContent=""
                 />
                 <ClientDetails
-                  title="Applicant Fullname"
+                  title="Applicant Full Name"
                   content={clientDetails?.fullName}
                   focusContent="(as shown in passport)"
                 />{" "}
@@ -144,24 +169,45 @@ export default function ClientProfile({ params }) {
                   focusContent=""
                 />
                 <ClientDetails
-                  title="Purpose of Travaling"
+                  title="Purpose of Traveling"
                   content={clientDetails?.purposeOfTraveling}
                   focusContent=""
                 />
               </div>
             </div>
+
+            {/* Delete button */}
             <div className="justify-center md:justify-end flex pr-8">
               <Button
-                btnText="Back"
-                className="bg-[#DDAA33] text-white justify-center flex"
+                btnText="Delete"
                 handleBtnClick={() => {
-                  router.back();
+                  setShowDeleteClient(true);
                 }}
+                className="bg-red-700 text-white justify-center flex"
               />
             </div>
           </section>
         </main>
+        <Modal show={showEditClient} onClose={() => setShowEditClient(false)}>
+          <EditClient
+            setShowEditClient={setShowEditClient}
+            editClientID={clientID}
+            clientDetails={clientDetails}
+          />
+        </Modal>
+        <Modal
+          show={showDeleteClient}
+          onClose={() => setShowDeleteClient(false)}
+        >
+          <DeleteClient
+            setShowDeleteClient={setShowDeleteClient}
+            deleteClientID={clientID}
+            clientDetails={clientDetails}
+          />
+        </Modal>
       </AuthLayout>
+
+      <ToastContainer />
     </>
   );
 }
