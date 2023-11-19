@@ -18,6 +18,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { CreateClientApi } from "@/app/services";
 import { useState } from "react";
+import { countryData, educationData, genderData } from "../../../../utils";
 
 const schema = yup.object().shape({
   firstName: yup.string().required("First Name is required"),
@@ -100,64 +101,6 @@ export default function Home() {
     retry: 0,
   });
 
-  const genderData = [
-    {
-      id: 1,
-      name: "Male",
-    },
-    {
-      id: 2,
-      name: "Female",
-    },
-  ];
-  const educationData = [
-    {
-      id: 1,
-      name: "Primary",
-    },
-    {
-      id: 2,
-      name: "Secondary",
-    },
-    {
-      id: 3,
-      name: "Tertiary",
-    },
-    {
-      id: 4,
-      name: "Masters",
-    },
-    {
-      id: 5,
-      name: "PhD",
-    },
-  ];
-  const countryData = [
-    {
-      id: 1,
-      name: "Nigeria",
-    },
-    {
-      id: 2,
-      name: "Ghana",
-    },
-    {
-      id: 3,
-      name: "South Africa",
-    },
-    {
-      id: 4,
-      name: "Kenya",
-    },
-    {
-      id: 5,
-      name: "Togo",
-    },
-    {
-      id: 6,
-      name: "Benin",
-    },
-  ];
   const router = useRouter();
 
   const {
