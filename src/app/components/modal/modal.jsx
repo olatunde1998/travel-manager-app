@@ -11,12 +11,6 @@ export const Modal = ({ show, onClose, children }) => {
     onClose && onClose();
   };
 
-  const handleClickOutside = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      handleClose();
-    }
-  };
-
   useEffect(() => {
     setIsOpen(show);
   }, [show]);
@@ -24,14 +18,14 @@ export const Modal = ({ show, onClose, children }) => {
   return (
     <>
       {isOpen && (
-       <div className="fixed inset-0 z-20 flex items-center justify-center overflow-hidden h-screen">
+        <div className="fixed inset-0 z-20 flex items-center justify-center overflow-hidden h-screen">
           <div
-           className="fixed inset-0 bg-gray-700 opacity-50"
+            className="fixed inset-0 bg-gray-400 opacity-95"
             onClick={handleClose}
           ></div>
           <div
             ref={modalRef}
-            className="p-3 z-20 md:w-3/5 max-w-[800px]   h-screen overflow-y-auto max-h-full scrollbar-hide"
+            className="p-3 z-20 md:w-3/5 overflow-y-auto max-h-full scrollbar-hide"
           >
             {children}
           </div>
