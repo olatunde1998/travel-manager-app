@@ -76,6 +76,7 @@ const errorNotifying = () => {
 };
 
 export default function Home() {
+  const [userImage, setUserImage] = useState<string | undefined>(undefined);
   const [getSelectedGender, setGetSelectedGender] = useState();
   const [getSelectedCountry, setGetSelectedCountry] = useState();
   const [getSelectedCountryOfInterest, setGetSelectedCountryOfInterest] =
@@ -159,24 +160,55 @@ export default function Home() {
                   Client&apos;s Picture
                 </p>
                 <div className="items-center flex flex-col justify-center md:flex-row md:flex md:items-center md:justify-start mt-6 max-w-[400px]">
-                  <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[100px] md:w-[90px] md:mb-0 md:mr-6">
-                    <Image
-                      src="/images/clientImg.png"
-                      width={100}
-                      height={100}
-                      className="w-full h-full"
-                      alt="client picture"
-                    />
-                  </div>
+                  {!userImage && (
+                    <div className="mb-4  mr-0 w-[90px] h-[100px] md:h-[120px] md:w-[120px] md:mb-0 md:mr-6">
+                      <Image
+                        src="/images/clientImg.png"
+                        width={100}
+                        height={100}
+                        className="w-full h-full"
+                        alt="client picture"
+                      />
+                    </div>
+                  )}
+                  {userImage && (
+                    <div className="relative rounded-full mr-10 my-4 w-[140px] h-[140px] flex items-center justify-center">
+                      <Image
+                        src={userImage}
+                        fill
+                        alt="user avatar"
+                        className="rounded-full"
+                      />
+                    </div>
+                  )}
+
                   <div className="space-y-2 flex flex-col justify-center items-center">
-                    <Button
-                      btnText="Upload"
-                      className="bg-[#DDAA33] rounded-xl justify-center flex text-white cursor-pointer"
-                    />
-                    <Button
-                      btnText="Use Webcam"
-                      className="justify-center flex rounded-xl border-[1.6px] border-red-700 text-red-700"
-                    />
+                    <label
+                      htmlFor="fileInput"
+                      className="w-fit mx-auto flex  justify-center tracking-wide cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="file"
+                          name="user_Image"
+                          id="fileInput"
+                          accept=".png,  .jpg, .jpeg"
+                          className="hidden input-field"
+                          onChange={({ target: { files } }) => {
+                            if (files) {
+                              setUserImage(URL.createObjectURL(files[0]));
+                              console.log("File Input Changed");
+                            }
+                          }}
+                        />
+                        <div className="bg-[#DDAA33] p-3 w-[200px] text-center items-center rounded-xl justify-center flex text-white cursor-pointer">
+                          Upload
+                        </div>
+                      </div>
+                    </label>
+                    <div className="p-3 w-[200px] text-center cursor-pointer items-center justify-center flex rounded-xl border-[1.6px] border-red-700 text-red-700">
+                      Use Webcam
+                    </div>
                   </div>
                 </div>
               </div>
