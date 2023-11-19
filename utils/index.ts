@@ -1,4 +1,4 @@
-const genderData = [
+export const genderData = [
     {
       id: 1,
       name: "Male",
@@ -8,7 +8,8 @@ const genderData = [
       name: "Female",
     },
   ];
-  const educationData = [
+
+  export const educationData = [
     {
       id: 1,
       name: "Primary",
@@ -30,7 +31,8 @@ const genderData = [
       name: "PhD",
     },
   ];
-  const countryData = [
+  
+  export const countryData = [
     {
       id: 1,
       name: "Nigeria",
