@@ -5,7 +5,6 @@ interface editProps {
   setShowEditClient?: any;
 }
 import {
-  Button,
   HeaderCrumb,
   Input,
   Selector,
@@ -90,11 +89,8 @@ export const EditClient = ({
   const [getSelectedCountryOfInterest, setGetSelectedCountryOfInterest] =
     useState();
   const [getSelectedEducation, setGetSelectedEducation] = useState();
+  const [isSaving, setIsSaving] = useState(false);
   const queryClient = useQueryClient();
-
-  const navigateToClientHome = () => {
-    router.push("/client");
-  };
 
   const { isLoading, mutate } = useMutation(EditClientApi, {
     onError: (error) => {
@@ -135,7 +131,7 @@ export const EditClient = ({
       mailingAddress: clientDetails?.mailingAddress,
       // countryOfInterest: getSelectedCountryOfInterest,
       purposeOfTraveling: clientDetails?.purposeOfTraveling,
-    //   imageUrl: clientDetails?.imageUrl,
+      //   imageUrl: clientDetails?.imageUrl,
     },
   });
 
@@ -173,10 +169,11 @@ export const EditClient = ({
       imageUrl: data?.imageUrl,
     };
     mutate({ data: requestData, _id: editClientID });
+    setIsSaving(true);
   };
   return (
     <>
-      <main className="min-h-screen  text-gray-600  p-4 md:pl-8  md:pt-8 bg-white">
+      <main className="text-gray-600  p-4 md:pl-8  md:pt-8 bg-white">
         <HeaderCrumb prevLink="Edit Client" nextLink="" />
         <p className="my-2 text-gray-500">Edit the Client here</p>
 
@@ -475,10 +472,12 @@ export const EditClient = ({
               >
                 Cancel
               </div>
-              <Button
-                btnText="Save"
-                className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
-              />
+              <button
+                disabled={isSaving}
+                className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer w-[200px]  p-3 text-center items-center"
+              >
+                {isSaving ? "Saving..." : "Save"}
+              </button>
             </div>
           </form>
         </section>

@@ -1,7 +1,6 @@
 "use client";
 import {
   AuthLayout,
-  Button,
   HeaderCrumb,
   Input,
   Selector,
@@ -12,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
@@ -82,6 +81,8 @@ export default function Home() {
   const [getSelectedCountryOfInterest, setGetSelectedCountryOfInterest] =
     useState();
   const [getSelectedEducation, setGetSelectedEducation] = useState();
+  const [isSaving, setIsSaving] = useState(false);
+
   const queryClient = useQueryClient();
 
   const navigateToClientHome = () => {
@@ -108,7 +109,6 @@ export default function Home() {
     handleSubmit,
     formState: { errors },
     register,
-    setValue,
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleSelectGender = (item: any) => {
@@ -145,6 +145,7 @@ export default function Home() {
       imageUrl: data?.imageUrl,
     };
     mutate(requestData);
+    setIsSaving(true);
   };
   return (
     <>
@@ -445,10 +446,12 @@ export default function Home() {
                 >
                   Cancel
                 </div>
-                <Button
-                  btnText="Save"
-                  className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer "
-                />
+                <button
+                  disabled={isSaving}
+                  className="bg-[#DDAA33] justify-center flex rounded-md text-white cursor-pointer w-[200px]  p-3 text-center items-center"
+                >
+                  {isSaving ? "Saving..." : "Save"}
+                </button>
               </div>
             </form>
           </section>

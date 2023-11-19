@@ -5,7 +5,7 @@ interface ButtonProps {
   btnIcon?: any;
 }
 
-export const Button = ({ btnText, className, handleBtnClick,  }: ButtonProps) => {
+export const Button = ({ btnText, className, handleBtnClick}: ButtonProps) => {
   return (
     <>
       <button

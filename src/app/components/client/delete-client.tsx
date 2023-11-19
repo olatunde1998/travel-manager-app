@@ -58,7 +58,7 @@ export const DeleteClient = ({
 
   return (
     <>
-      <div className="bg-white p-8 rounded-[0.63rem] -z-50 lg:w-[70%] mx-auto mt-40">
+      <div className="bg-white p-8 rounded-[0.63rem] -z-50 lg:w-[70%] mx-auto">
         <div className="flex justify-end mb-3">
           <span
             className="cursor-pointer  font-bold"
