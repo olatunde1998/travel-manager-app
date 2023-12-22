@@ -1,17 +1,21 @@
-"use client"
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Viewport } from "next/dist/lib/metadata/types/extra-types";
+import TanstackProvider from "./components/providers/TanstackProvider";
 
-const queryClient = new QueryClient();
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "Travel Manager App",
-//   description: "Travel Manager App for managing your travel plans",
-// };
+export const metadata: Metadata = {
+  manifest: "/manifest.json",
+  title: "Travel Manager App",
+  description: "Travel Manager App for managing your travel plans",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  height: "device-height",
+};
 
 export default function RootLayout({
   children,
@@ -22,11 +26,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#3367D6" />
       </head>
-      <QueryClientProvider client={queryClient}>
-        <body className={inter.className}>{children}</body>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-      </QueryClientProvider>
+      <body className={inter.className}>
+        <TanstackProvider>{children}</TanstackProvider>
+      </body>
     </html>
   );
 }
